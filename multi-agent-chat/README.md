@@ -21,7 +21,9 @@ Run the service on port 8000:
 uvicorn agent_service:app --port 8000
 ```
 
-Set the `OPENAI_API_KEY` environment variable before launching the server.
+Set the `OPENAI_API_KEY` environment variable before launching the server. A
+sample `.env` file is included; replace the placeholder value with your actual
+key and the application will load it automatically.
 
 ### Docker
 
