@@ -1,4 +1,5 @@
 import os
+import time
 from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -14,6 +15,20 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 
 app = FastAPI(title="Simple Agent Service")
 
+# store conversation in memory for up to 15 minutes
+CONVERSATION: list = []
+START_TIME: float | None = None
+MEMORY_SECONDS = 15 * 60
+
+def _get_history() -> list:
+    """Return current conversation history, resetting after 15 minutes."""
+    global CONVERSATION, START_TIME
+    now = time.time()
+    if START_TIME is None or now - START_TIME > MEMORY_SECONDS:
+        START_TIME = now
+        CONVERSATION = []
+    return CONVERSATION
+
 class ChatRequest(BaseModel):
     message: str
 
@@ -22,11 +37,16 @@ class ChatResponse(BaseModel):
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest):
-    """Return a chat completion from OpenAI based on the incoming message."""
+    """Return a chat completion using the stored conversation history."""
+    history = _get_history()
+    history.append({"role": "user", "content": request.message})
+
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": request.message}],
+        messages=history,
         max_tokens=128,
     )
+
     reply = completion.choices[0].message.content.strip()
+    history.append({"role": "assistant", "content": reply})
     return ChatResponse(response=reply)

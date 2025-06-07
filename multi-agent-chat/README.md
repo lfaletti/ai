@@ -1,32 +1,35 @@
-# Multi-Agent Chat
+# Chatbot Service
 
-This example demonstrates how to run multiple chat agents that communicate via REST.
+This directory contains a small REST chatbot built with FastAPI and OpenAI. The service keeps conversation history for up to 15 minutes so short sessions can be maintained before starting over.
 
-## Components
+## Files
 
-- `agent_service.py` – a simple FastAPI service exposing a `/chat` endpoint that returns a response from OpenAI based on the incoming message.
-- `coordinator.py` – a FastAPI service that forwards a message to one or more agents and aggregates their replies.
-
-Both services read `OPENAI_API_KEY` from the environment. The coordinator also uses an optional `AGENT_URLS` environment variable with comma-separated agent URLs.
+- `agent_service.py` – exposes a `/chat` endpoint that sends accumulated messages to OpenAI and stores replies.
+- `Dockerfile` – container definition for running the service.
 
 ## Usage
 
-Install dependencies:
+Install dependencies locally:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run an agent service on port 8001:
+Run the service on port 8000:
 
 ```bash
-uvicorn agent_service:app --port 8001
+uvicorn agent_service:app --port 8000
 ```
 
-Run the coordinator and point it to the agent:
+Set the `OPENAI_API_KEY` environment variable before launching the server.
+
+### Docker
+
+Build and start a container:
 
 ```bash
-AGENT_URLS=http://localhost:8001 uvicorn coordinator:app --port 8000
+docker build -t chatbot .
+docker run -p 8000:8000 -e OPENAI_API_KEY=YOUR_KEY chatbot
 ```
 
 Send a message:
@@ -35,4 +38,4 @@ Send a message:
 curl -X POST http://localhost:8000/chat -H 'Content-Type: application/json' -d '{"message": "Hola"}'
 ```
 
-The coordinator will return the response from the configured agent(s).
+A new conversation begins automatically if 15 minutes pass since the first user message.
