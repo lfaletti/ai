@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Generador de Código C# — Visualización Educativa</title>
+    <style>
+        /* ================================================================
+           ESTILOS PRINCIPALES — Tema oscuro estilo VS Code
+           ================================================================ */
+        :root {
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252526;
+            --bg-tertiary: #2d2d30;
+            --bg-hover: #3e3e42;
+            --text-primary: #d4d4d4;
+            --text-secondary: #9e9e9e;
+            --accent-blue: #569CD6;
+            --accent-green: #4EC9B0;
+            --accent-orange: #CE9178;
+            --accent-purple: #C586C0;
+            --accent-yellow: #DCDCAA;
+            --accent-red: #F44747;
+            --border-color: #3e3e42;
+            --keyword-color: #569CD6;
+            --type-color: #4EC9B0;
+            --string-color: #CE9178;
+            --comment-color: #6A9955;
+            --number-color: #B5CEA8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'Consolas', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* ---- Header ---- */
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 2px solid var(--accent-blue);
+            padding: 20px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        /* ---- Navegación tabs ---- */
+        .tabs {
+            display: flex;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 20px;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tab:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .tab.active {
+            color: var(--accent-blue);
+            border-bottom-color: var(--accent-blue);
+            background: var(--bg-primary);
+        }
+
+        /* ---- Contenido principal ---- */
+        .content { display: none; padding: 30px 40px; max-width: 1400px; margin: 0 auto; }
+        .content.active { display: block; }
+
+        /* ---- Tarjetas ---- */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .card h4 {
+            color: var(--accent-green);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        /* ---- Código con tokens coloreados ---- */
+        .code-display {
+            background: #1a1a2e;
+            padding: 16px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            line-height: 1.8;
+            border: 1px solid #333;
+        }
+
+        .token {
+            display: inline-block;
+            padding: 2px 4px;
+            margin: 1px;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.15s;
+        }
+
+        .token:hover {
+            background: rgba(255,255,255,0.1);
+            outline: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .token .tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        .token:hover .tooltip { display: block; }
+
+        /* ---- Colores de tokens por categoría ---- */
+        .token-keyword { color: var(--keyword-color); font-weight: bold; }
+        .token-type_or_class { color: var(--type-color); }
+        .token-identifier { color: #9CDCFE; }
+        .token-operator { color: var(--text-primary); }
+        .token-string { color: var(--string-color); }
+        .token-number { color: var(--number-color); }
+        .token-comment { color: var(--comment-color); font-style: italic; }
+        .token-whitespace { color: #555; }
+        .token-fim { color: var(--accent-purple); background: rgba(197,134,192,0.1); }
+
+        /* ---- Attention map (heat map) ---- */
+        .attention-grid {
+            display: inline-block;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: auto;
+            max-width: 100%;
+            max-height: 500px;
+        }
+
+        .attention-cell {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            font-size: 8px;
+            line-height: 24px;
+        }
+
+        .attention-label {
+            display: inline-block;
+            width: 80px;
+            font-size: 11px;
+            text-align: right;
+            padding-right: 8px;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* ---- RAG Flow ---- */
+        .rag-flow {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .rag-step {
+            flex: 1;
+            min-width: 250px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+        }
+
+        .rag-step h4 {
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+        }
+
+        .rag-step .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* ---- Similarity bar ---- */
+        .sim-bar {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+        }
+
+        .sim-bar-label {
+            width: 200px;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .sim-bar-track {
+            flex: 1;
+            height: 16px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            margin: 0 10px;
+            overflow: hidden;
+        }
+
+        .sim-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        .sim-bar-value {
+            width: 50px;
+            text-align: right;
+            font-size: 12px;
+            color: var(--accent-green);
+        }
+
+        /* ---- Generación paso a paso ---- */
+        .gen-step {
+            display: inline-block;
+            padding: 4px 8px;
+            margin: 2px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .gen-step:hover { transform: scale(1.1); }
+
+        .gen-step-candidates {
+            display: none;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* ---- Botones ---- */
+        .btn {
+            padding: 8px 20px;
+            border: 1px solid var(--accent-blue);
+            background: transparent;
+            color: var(--accent-blue);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: var(--accent-blue); color: white; }
+        .btn.active { background: var(--accent-blue); color: white; }
+
+        /* ---- Comparación lado a lado ---- */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .comparison .panel {
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .comparison .panel.rag { border-color: var(--accent-green); }
+        .comparison .panel.no-rag { border-color: var(--accent-orange); }
+
+        /* ---- Stats grid ---- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            margin-top: 4px;
+        }
+
+        /* ---- Nota educativa ---- */
+        .edu-note {
+            background: rgba(86, 156, 214, 0.08);
+            border-left: 3px solid var(--accent-blue);
+            padding: 12px 16px;
+            margin: 12px 0;
+            font-size: 0.9em;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .edu-note strong { color: var(--accent-blue); }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .comparison { grid-template-columns: 1fr; }
+            .rag-flow { flex-direction: column; }
+            header { padding: 16px 20px; }
+            .content { padding: 20px; }
+            .tabs { padding: 0; }
+        }
+
+        /* ---- Animación ---- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card { animation: fadeIn 0.3s ease; }
+
+        /* ---- Training chart ---- */
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        canvas { width: 100% !important; }
+
+        /* ---- Select/Input ---- */
+        select, input[type="text"] {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
+<header>
+    <h1>🔧 Generador de Código C# — Visualización Educativa</h1>
+    <p>Transformer de 4 capas + RAG con FAISS — Entendiendo cómo funcionan los generadores de código</p>
+</header>
+
+<!-- ================================================================
+     TABS DE NAVEGACIÓN
+     ================================================================ -->
+<div class="tabs">
+    <div class="tab active" onclick="mostrarTab('overview')">📋 Resumen</div>
+    <div class="tab" onclick="mostrarTab('tokenizacion')">🔤 Tokenización C#</div>
+    <div class="tab" onclick="mostrarTab('atencion')">👁️ Attention Maps</div>
+    <div class="tab" onclick="mostrarTab('generacion')">⚡ Generación</div>
+    <div class="tab" onclick="mostrarTab('rag')">🔍 Flujo RAG</div>
+    <div class="tab" onclick="mostrarTab('comparacion')">⚖️ Con vs Sin RAG</div>
+</div>
+
+<!-- ================================================================
+     TAB 1: RESUMEN (OVERVIEW)
+     ================================================================ -->
+<div id="overview" class="content active">
+    <div class="card">
+        <h3>🎯 ¿Qué es este proyecto?</h3>
+        <p>Un generador de código C# educativo que muestra cómo funcionan herramientas como GitHub Copilot.</p>
+
+        <div class="edu-note">
+            <strong>💡 Diferencia clave vs modelos de texto natural:</strong>
+            Los modelos de texto generan prosa libre. Los generadores de código deben respetar
+            la gramática del lenguaje (C#), mantener coherencia de tipos, y seguir patrones arquitectónicos.
+        </div>
+
+        <div class="stats-grid" id="stats-overview">
+            <div class="stat-card">
+                <div class="stat-value">4</div>
+                <div class="stat-label">Capas Transformer</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">256</div>
+                <div class="stat-label">Dimensión Modelo</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">8</div>
+                <div class="stat-label">Cabezas Atención</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-vocab">—</div>
+                <div class="stat-label">Tokens Vocabulario</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-docs">—</div>
+                <div class="stat-label">Docs RAG Indexados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">FIM</div>
+                <div class="stat-label">Fill-in-the-Middle</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>🏗️ Arquitectura del Sistema</h3>
+        <div class="code-display" style="font-size: 13px; line-height: 1.5;">
+┌─────────────────────────────────────────────────────────────┐
+│                    FLUJO COMPLETO                            │
+│                                                              │
+│   Developer escribe:  "// crear endpoint REST para orders"   │
+│          │                                                   │
+│          ▼                                                   │
+│   ┌─────────────┐    ┌──────────────────┐                   │
+│   │ Tokenizador │    │  Sistema RAG     │                   │
+│   │    C#       │    │  ┌────────────┐  │                   │
+│   │ PascalCase  │    │  │   FAISS    │  │                   │
+│   │ Operadores  │    │  │  Búsqueda  │──┼──▶ Top-K Snippets │
+│   │ Genéricos   │    │  │  Vectorial │  │                   │
+│   └──────┬──────┘    │  └────────────┘  │                   │
+│          │           └──────────────────┘                   │
+│          ▼                    │                              │
+│   ┌──────────────────────────┴──────┐                       │
+│   │     Transformer (4 capas)       │                       │
+│   │  Embeddings → Attention → FFN   │                       │
+│   │  Contexto RAG + Prompt → Código │                       │
+│   └────────────────┬────────────────┘                       │
+│                    ▼                                        │
+│   Código C# generado (coherente con el proyecto)            │
+└─────────────────────────────────────────────────────────────┘</div>
+    </div>
+
+    <!-- Training chart placeholder -->
+    <div class="card">
+        <h3>📈 Curva de Entrenamiento</h3>
+        <div class="chart-container">
+            <canvas id="trainingChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================
+     TAB 2: TOKENIZACIÓN C#
+     ================================================================ -->
+<div id="tokenizacion" class="content">
+    <div class="card">
+        <h3>🔤 Tokenización Específica para C#</h3>
+        <div class="edu-note">
+            <strong>💡 ¿Por qué un tokenizador especial?</strong>
+            Un tokenizador genérico (como el de GPT) rompería <code>=&gt;</code> en <code>=</code> + <code>&gt;</code>,
+            perdiendo el significado del operador lambda. Nuestro tokenizador reconoce operadores compuestos,
+            divide PascalCase, y preserva la estructura del código C#.
+        </div>
+
+        <div style="margin: 16px 0;">
+            <label>Seleccionar ejemplo: </label>
+            <select id="tokenSelectExample" onchange="mostrarTokenizacion(this.value)">
+            </select>
+        </div>
+
+        <div id="tokenDisplay" class="code-display"></div>
+
+        <div id="tokenStats" style="margin-top: 16px;"></div>
+    </div>
+
+    <div class="card">
+        <h3>📊 Leyenda de Colores de Tokens</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+            <span><span class="token token-keyword">keyword</span> — Palabras reservadas (public, class, async)</span>
+            <span><span class="token token-type_or_class">tipo/clase</span> — Tipos y clases (Product, List, Task)</span>
+            <span><span class="token token-identifier">identificador</span> — Variables y métodos (page, result)</span>
+            <span><span class="token token-operator">operador</span> — Operadores (=>, ==, +)</span>
+            <span><span class="token token-string">string</span> — Cadenas de texto</span>
+            <span><span class="token token-number">número</span> — Literales numéricos</span>
+            <span><span class="token token-comment">comentario</span> — Comentarios</span>
+            <span><span class="token token-fim">FIM</span> — Tokens Fill-in-the-Middle</span>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================
+     TAB 3: ATTENTION MAPS
+     ================================================================ -->
+<div id="atencion" class="content">
+    <div class="card">
+        <h3>👁️ Attention Maps — ¿A qué presta atención el modelo?</h3>
+        <div class="edu-note">
+            <strong>💡 Interpretando Attention Maps:</strong>
+            Cada celda muestra cuánta "atención" presta el token de la fila al token de la columna.
+            Colores más intensos = más atención. En código C#, esperamos ver:
+            <ul style="margin-top: 8px; padding-left: 20px;">
+                <li>Atención fuerte de <code>}</code> hacia <code>{</code> (cerrando bloques)</li>
+                <li>Atención de variables hacia su tipo declarado</li>
+                <li>Atención de <code>await</code> hacia <code>async</code></li>
+            </ul>
+        </div>
+
+        <div style="margin: 16px 0;">
+            <label>Ejemplo: </label>
+            <select id="attnSelectExample" onchange="mostrarAtencion(this.value)"></select>
+            <label style="margin-left: 16px;">Capa: </label>
+            <select id="attnSelectLayer" onchange="actualizarAtencion()"></select>
+        </div>
+
+        <div id="attentionDisplay"></div>
+    </div>
+</div>
+
+<!-- ================================================================
+     TAB 4: GENERACIÓN TOKEN POR TOKEN
+     ================================================================ -->
+<div id="generacion" class="content">
+    <div class="card">
+        <h3>⚡ Generación Token por Token</h3>
+        <div class="edu-note">
+            <strong>💡 Cómo genera código el modelo:</strong>
+            El Transformer genera UN token a la vez. En cada paso, calcula la probabilidad
+            de TODOS los tokens posibles y elige uno (usando temperatura y top-k sampling).
+            Haz clic en cada token generado para ver los candidatos alternativos.
+        </div>
+
+        <div style="margin: 16px 0;">
+            <label>Prompt: </label>
+            <select id="genSelectExample" onchange="mostrarGeneracion(this.value)"></select>
+        </div>
+
+        <div class="card" style="background: var(--bg-primary);">
+            <h4>Prompt (entrada) + Código Generado:</h4>
+            <div id="genDisplay" class="code-display"></div>
+        </div>
+
+        <div id="genCandidates" class="gen-step-candidates"></div>
+    </div>
+</div>
+
+<!-- ================================================================
+     TAB 5: FLUJO RAG COMPLETO
+     ================================================================ -->
+<div id="rag" class="content">
+    <div class="card">
+        <h3>🔍 Flujo RAG (Retrieval-Augmented Generation)</h3>
+        <div class="edu-note">
+            <strong>💡 ¿Qué es RAG?</strong>
+            RAG permite al modelo CONSULTAR una base de código existente antes de generar.
+            Es como cuando un programador revisa el código del proyecto antes de escribir algo nuevo.
+            Esto mejora la consistencia y reduce las "alucinaciones" del modelo.
+        </div>
+
+        <div style="margin: 16px 0;">
+            <label>Query: </label>
+            <select id="ragSelectQuery" onchange="mostrarRAG(this.value)"></select>
+        </div>
+
+        <!-- Flujo visual RAG -->
+        <div class="rag-flow" id="ragFlow"></div>
+    </div>
+
+    <!-- Heat map de similitudes -->
+    <div class="card">
+        <h3>🔥 Heat Map de Similitudes</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">
+            Similitud entre la query y cada documento de la base de conocimiento.
+            Barras más largas = más relevante.
+        </p>
+        <div id="ragHeatmap"></div>
+    </div>
+
+    <!-- Contexto generado -->
+    <div class="card">
+        <h3>📝 Contexto RAG Generado (se envía al modelo)</h3>
+        <div id="ragContext" class="code-display" style="max-height: 400px; overflow-y: auto;"></div>
+    </div>
+</div>
+
+<!-- ================================================================
+     TAB 6: COMPARACIÓN CON/SIN RAG
+     ================================================================ -->
+<div id="comparacion" class="content">
+    <div class="card">
+        <h3>⚖️ Comparación: Generación Con vs Sin RAG</h3>
+        <div class="edu-note">
+            <strong>💡 ¿Cuándo RAG mejora la generación?</strong>
+            RAG es más útil cuando:
+            <ul style="margin-top: 8px; padding-left: 20px;">
+                <li>El proyecto tiene patrones/convenciones específicas</li>
+                <li>Se necesita código coherente con el código existente</li>
+                <li>Se usan APIs o librerías específicas del proyecto</li>
+                <li>Se quiere reducir "alucinaciones" del modelo</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="comparison" id="comparisonDisplay">
+        <div class="panel no-rag">
+            <h4 style="color: var(--accent-orange);">❌ Sin RAG (solo modelo)</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9em;">
+                El modelo genera "de memoria", sin contexto del proyecto.
+            </p>
+            <div id="noRagCode" class="code-display" style="margin-top: 12px; max-height: 300px; overflow-y: auto;">
+                Ejecuta main.py para generar datos de comparación...
+            </div>
+        </div>
+        <div class="panel rag">
+            <h4 style="color: var(--accent-green);">✅ Con RAG (modelo + contexto)</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9em;">
+                El modelo recibe snippets relevantes como contexto antes de generar.
+            </p>
+            <div id="ragCode" class="code-display" style="margin-top: 12px; max-height: 300px; overflow-y: auto;">
+                Ejecuta main.py para generar datos de comparación...
+            </div>
+        </div>
+    </div>
+
+    <!-- Métricas de comparación -->
+    <div class="card" id="compMetrics" style="margin-top: 20px;">
+        <h3>📊 Métricas de Comparación</h3>
+        <div id="metricsDisplay" class="stats-grid"></div>
+    </div>
+</div>
+
+
+<!-- ================================================================
+     JAVASCRIPT — Lógica de la visualización interactiva
+     ================================================================ -->
+<script>
+// ================================================================
+// Estado global y carga de datos
+// ================================================================
+let datosTokenizacion = null;
+let datosAtencion = null;
+let datosGeneracion = null;
+let datosRAG = null;
+let datosComparacion = null;
+let datosEntrenamiento = null;
+
+// Cargar todos los datos JSON al iniciar
+async function cargarDatos() {
+    try {
+        const archivos = [
+            ['datos_tokenizacion.json', d => datosTokenizacion = d],
+            ['datos_atencion.json', d => datosAtencion = d],
+            ['datos_generacion.json', d => datosGeneracion = d],
+            ['datos_rag.json', d => datosRAG = d],
+            ['datos_comparacion.json', d => datosComparacion = d],
+            ['datos_entrenamiento.json', d => datosEntrenamiento = d],
+        ];
+
+        for (const [archivo, setter] of archivos) {
+            try {
+                const resp = await fetch(archivo);
+                if (resp.ok) {
+                    setter(await resp.json());
+                }
+            } catch (e) {
+                console.log(`⚠️ ${archivo} no disponible (ejecuta main.py primero)`);
+            }
+        }
+
+        inicializarUI();
+    } catch (e) {
+        console.error('Error cargando datos:', e);
+    }
+}
+
+function inicializarUI() {
+    // Llenar selects de tokenización
+    if (datosTokenizacion && datosTokenizacion.ejemplos) {
+        const sel = document.getElementById('tokenSelectExample');
+        datosTokenizacion.ejemplos.forEach((ej, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = ej.codigo_original.substring(0, 60) + '...';
+            sel.appendChild(opt);
+        });
+        mostrarTokenizacion(0);
+
+        // Actualizar stats del overview
+        const info = datosTokenizacion.vocabulario_info;
+        document.getElementById('stat-vocab').textContent = info.total_tokens || '—';
+    }
+
+    // Llenar selects de atención
+    if (datosAtencion && datosAtencion.ejemplos) {
+        const sel = document.getElementById('attnSelectExample');
+        datosAtencion.ejemplos.forEach((ej, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = ej.codigo.substring(0, 60) + '...';
+            sel.appendChild(opt);
+        });
+        mostrarAtencion(0);
+    }
+
+    // Llenar selects de generación
+    if (datosGeneracion && datosGeneracion.ejemplos) {
+        const sel = document.getElementById('genSelectExample');
+        datosGeneracion.ejemplos.forEach((ej, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = ej.prompt;
+            sel.appendChild(opt);
+        });
+        mostrarGeneracion(0);
+    }
+
+    // Llenar selects de RAG
+    if (datosRAG && datosRAG.ejemplos) {
+        const sel = document.getElementById('ragSelectQuery');
+        datosRAG.ejemplos.forEach((ej, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = ej.query;
+            sel.appendChild(opt);
+        });
+        document.getElementById('stat-docs').textContent =
+            datosRAG.estadisticas?.total_documentos || '—';
+        mostrarRAG(0);
+    }
+
+    // Comparación
+    if (datosComparacion && datosComparacion.comparaciones) {
+        mostrarComparacion(datosComparacion.comparaciones[0]);
+    }
+
+    // Gráfica de entrenamiento
+    if (datosEntrenamiento && datosEntrenamiento.historial) {
+        dibujarGraficaEntrenamiento(datosEntrenamiento.historial);
+    }
+}
+
+// ================================================================
+// Tab navigation
+// ================================================================
+function mostrarTab(tabId) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// ================================================================
+// TAB: Tokenización
+// ================================================================
+function mostrarTokenizacion(idx) {
+    if (!datosTokenizacion) return;
+    const ejemplo = datosTokenizacion.ejemplos[idx];
+    const display = document.getElementById('tokenDisplay');
+
+    let html = '';
+    ejemplo.tokens.forEach(token => {
+        const texto = escapeHTML(token.texto === '<NL>' ? '↵\n' :
+                       token.texto === '<INDENT>' ? '→   ' :
+                       token.texto);
+        const clase = `token-${token.categoria}`;
+        html += `<span class="token ${clase}">` +
+                `<span class="tooltip">ID: ${token.id} | ${token.categoria}</span>` +
+                `${texto}</span>`;
+    });
+
+    display.innerHTML = html;
+
+    // Stats
+    const stats = ejemplo.estadisticas;
+    const statsHtml = `
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-value">${stats.total_tokens}</div><div class="stat-label">Total Tokens</div></div>
+            <div class="stat-card"><div class="stat-value">${stats.tokens_unicos}</div><div class="stat-label">Tokens Únicos</div></div>
+            <div class="stat-card"><div class="stat-value">${stats.ratio_compresion}</div><div class="stat-label">Ratio Compresión</div></div>
+            ${Object.entries(stats.por_categoria).map(([k,v]) =>
+                `<div class="stat-card"><div class="stat-value">${v}</div><div class="stat-label">${k}</div></div>`
+            ).join('')}
+        </div>
+    `;
+    document.getElementById('tokenStats').innerHTML = statsHtml;
+}
+
+// ================================================================
+// TAB: Attention Maps
+// ================================================================
+let currentAttnExample = 0;
+
+function mostrarAtencion(idx) {
+    currentAttnExample = parseInt(idx);
+    if (!datosAtencion) return;
+
+    const ejemplo = datosAtencion.ejemplos[idx];
+    const selLayer = document.getElementById('attnSelectLayer');
+    selLayer.innerHTML = '';
+
+    ejemplo.atenciones.forEach((attn, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `Capa ${i + 1} (${attn.num_cabezas} cabezas)`;
+        selLayer.appendChild(opt);
+    });
+
+    actualizarAtencion();
+}
+
+function actualizarAtencion() {
+    if (!datosAtencion) return;
+    const ejemplo = datosAtencion.ejemplos[currentAttnExample];
+    const layerIdx = parseInt(document.getElementById('attnSelectLayer').value);
+    const attn = ejemplo.atenciones[layerIdx];
+    const tokens = ejemplo.tokens;
+    const pesos = attn.pesos;
+    const display = document.getElementById('attentionDisplay');
+
+    const n = Math.min(pesos.length, 20); // Limitar para visualización
+
+    let html = '<div class="attention-grid"><table style="border-collapse: collapse;">';
+
+    // Header row
+    html += '<tr><td class="attention-label"></td>';
+    for (let j = 0; j < n; j++) {
+        html += `<td style="width:28px;text-align:center;font-size:9px;color:var(--text-secondary);writing-mode:vertical-lr;height:80px;padding:4px;">` +
+                `${escapeHTML(tokens[j] || '?').substring(0, 8)}</td>`;
+    }
+    html += '</tr>';
+
+    // Data rows
+    for (let i = 0; i < n; i++) {
+        html += `<tr><td class="attention-label">${escapeHTML(tokens[i] || '?')}</td>`;
+        for (let j = 0; j < n; j++) {
+            const valor = pesos[i] && pesos[i][j] ? pesos[i][j] : 0;
+            const intensidad = Math.min(255, Math.floor(valor * 255 * 3));
+            const color = `rgb(${intensidad}, ${Math.floor(intensidad * 0.4)}, ${Math.floor(intensidad * 0.8)})`;
+            html += `<td class="attention-cell" style="background:${color};width:28px;height:28px;"` +
+                    ` title="${tokens[i]}→${tokens[j]}: ${valor.toFixed(3)}"></td>`;
+        }
+        html += '</tr>';
+    }
+
+    html += '</table></div>';
+    display.innerHTML = html;
+}
+
+// ================================================================
+// TAB: Generación
+// ================================================================
+function mostrarGeneracion(idx) {
+    if (!datosGeneracion) return;
+    const ejemplo = datosGeneracion.ejemplos[idx];
+    const display = document.getElementById('genDisplay');
+
+    let html = `<span style="color: var(--text-secondary);">// Prompt: </span>` +
+               `<span style="color: var(--accent-blue);">${escapeHTML(ejemplo.prompt)}</span>`;
+
+    if (ejemplo.pasos) {
+        ejemplo.pasos.forEach((paso, i) => {
+            const prob = paso.probabilidad;
+            const opacity = 0.3 + prob * 0.7;
+            const bg = prob > 0.5 ? 'rgba(78,201,176,0.2)' :
+                       prob > 0.2 ? 'rgba(86,156,214,0.2)' : 'rgba(244,71,71,0.15)';
+
+            const texto = escapeHTML(paso.token === '<NL>' ? '↵' : paso.token);
+
+            html += `<span class="gen-step" style="background:${bg};opacity:${opacity};"` +
+                    ` onclick="mostrarCandidatos(${idx}, ${i})"` +
+                    ` title="P=${(prob*100).toFixed(1)}%">${texto}</span>`;
+        });
+    }
+
+    display.innerHTML = html;
+}
+
+function mostrarCandidatos(ejIdx, pasoIdx) {
+    if (!datosGeneracion) return;
+    const paso = datosGeneracion.ejemplos[ejIdx].pasos[pasoIdx];
+    const container = document.getElementById('genCandidates');
+
+    let html = `<h4 style="color: var(--accent-green);">Paso ${paso.paso}: Candidatos alternativos</h4>`;
+    html += `<p>Token elegido: <strong style="color: var(--accent-blue);">${escapeHTML(paso.token)}</strong> ` +
+            `(P=${(paso.probabilidad*100).toFixed(1)}%)</p>`;
+    html += '<div style="margin-top: 10px;">';
+
+    if (paso.candidatos) {
+        paso.candidatos.forEach((cand, i) => {
+            const width = Math.max(5, cand.probabilidad * 100 * 3);
+            const color = i === 0 ? 'var(--accent-green)' :
+                         i < 3 ? 'var(--accent-blue)' : 'var(--accent-orange)';
+            html += `<div class="sim-bar">` +
+                    `<span class="sim-bar-label">${escapeHTML(cand.token)}</span>` +
+                    `<div class="sim-bar-track"><div class="sim-bar-fill" style="width:${width}%;background:${color};"></div></div>` +
+                    `<span class="sim-bar-value">${(cand.probabilidad*100).toFixed(1)}%</span></div>`;
+        });
+    }
+
+    html += '</div>';
+    container.innerHTML = html;
+    container.style.display = 'block';
+}
+
+// ================================================================
+// TAB: RAG
+// ================================================================
+function mostrarRAG(idx) {
+    if (!datosRAG) return;
+    const ejemplo = datosRAG.ejemplos[idx];
+
+    // Flujo visual
+    const flowDiv = document.getElementById('ragFlow');
+    let flowHtml = '';
+
+    // Paso 1: Query
+    flowHtml += `<div class="rag-step">
+        <h4><span class="step-number">1</span> Query del Desarrollador</h4>
+        <div class="code-display" style="font-size: 13px;">"${escapeHTML(ejemplo.query)}"</div>
+        <p style="margin-top: 8px; color: var(--text-secondary); font-size: 0.85em;">
+            Se convierte a un vector numérico (embedding) de 256 dimensiones
+        </p>
+    </div>`;
+
+    // Paso 2: Búsqueda
+    flowHtml += `<div class="rag-step">
+        <h4><span class="step-number">2</span> Búsqueda Vectorial (FAISS)</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9em;">
+            Busca los ${ejemplo.resultados.length} snippets más similares
+            en ${ejemplo.tiempo_busqueda_ms}ms
+        </p>
+        <div style="margin-top: 10px;">
+            ${ejemplo.resultados.map(r =>
+                `<div style="padding: 4px 0; border-bottom: 1px solid var(--border-color);">
+                    <span style="color: var(--accent-green);">#${r.rank}</span>
+                    <span style="color: var(--accent-blue);">[${r.categoria}]</span>
+                    <span>${escapeHTML(r.descripcion.substring(0, 40))}...</span>
+                    <span style="color: var(--accent-yellow); float: right;">
+                        ${(r.similitud * 100).toFixed(0)}%
+                    </span>
+                </div>`
+            ).join('')}
+        </div>
+    </div>`;
+
+    // Paso 3: Contexto
+    flowHtml += `<div class="rag-step">
+        <h4><span class="step-number">3</span> Contexto para el Modelo</h4>
+        <p style="color: var(--text-secondary); font-size: 0.9em;">
+            Los snippets recuperados se combinan como contexto
+            que se prepone al prompt del usuario.
+        </p>
+        <div style="margin-top: 8px; font-size: 0.85em; color: var(--accent-purple);">
+            [Contexto RAG] + [Prompt] → Modelo → Código generado
+        </div>
+    </div>`;
+
+    flowDiv.innerHTML = flowHtml;
+
+    // Heat map de similitudes
+    const heatDiv = document.getElementById('ragHeatmap');
+    let heatHtml = '';
+
+    if (ejemplo.resultados) {
+        ejemplo.resultados.forEach(doc => {
+            const width = Math.max(5, doc.similitud * 100);
+            const color = doc.similitud > 0.7 ? 'var(--accent-green)' :
+                         doc.similitud > 0.4 ? 'var(--accent-blue)' : 'var(--accent-orange)';
+            heatHtml += `<div class="sim-bar">
+                <span class="sim-bar-label" title="${escapeHTML(doc.descripcion)}">
+                    [${doc.categoria}] ${escapeHTML(doc.descripcion.substring(0, 35))}...
+                </span>
+                <div class="sim-bar-track">
+                    <div class="sim-bar-fill" style="width:${width}%;background:${color};"></div>
+                </div>
+                <span class="sim-bar-value">${(doc.similitud * 100).toFixed(1)}%</span>
+            </div>`;
+        });
+    }
+
+    heatDiv.innerHTML = heatHtml;
+
+    // Contexto
+    document.getElementById('ragContext').textContent = ejemplo.contexto || 'Sin contexto generado';
+}
+
+// ================================================================
+// TAB: Comparación
+// ================================================================
+function mostrarComparacion(comp) {
+    if (!comp) return;
+
+    document.getElementById('noRagCode').textContent = comp.sin_rag?.codigo || 'Sin datos';
+    document.getElementById('ragCode').textContent = comp.con_rag?.codigo || 'Sin datos';
+
+    // Métricas
+    if (comp.metricas) {
+        const m = comp.metricas;
+        const metricsDiv = document.getElementById('metricsDisplay');
+        metricsDiv.innerHTML = `
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--accent-orange);">${m.longitud_sin_rag}</div>
+                <div class="stat-label">Longitud sin RAG</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--accent-green);">${m.longitud_con_rag}</div>
+                <div class="stat-label">Longitud con RAG</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--accent-orange);">${m.keywords_sin_rag}</div>
+                <div class="stat-label">Keywords C# sin RAG</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color: var(--accent-green);">${m.keywords_con_rag}</div>
+                <div class="stat-label">Keywords C# con RAG</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${m.snippets_recuperados}</div>
+                <div class="stat-label">Snippets Recuperados</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${(m.similitud_promedio * 100).toFixed(0)}%</div>
+                <div class="stat-label">Similitud Promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${m.balance_llaves_sin_rag}</div>
+                <div class="stat-label">Desbalance {} sin RAG</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${m.balance_llaves_con_rag}</div>
+                <div class="stat-label">Desbalance {} con RAG</div>
+            </div>
+        `;
+    }
+}
+
+// ================================================================
+// Gráfica de entrenamiento (canvas simple)
+// ================================================================
+function dibujarGraficaEntrenamiento(historial) {
+    const canvas = document.getElementById('trainingChart');
+    if (!canvas || !historial || historial.length === 0) return;
+
+    const ctx = canvas.getContext('2d');
+    const container = canvas.parentElement;
+    canvas.width = container.clientWidth - 40;
+    canvas.height = 260;
+
+    const w = canvas.width;
+    const h = canvas.height;
+    const padding = { top: 20, right: 20, bottom: 40, left: 60 };
+
+    // Extraer datos
+    const losses = historial.map(h => h.loss);
+    const pasos = historial.map(h => h.paso);
+    const maxLoss = Math.max(...losses) * 1.1;
+    const minLoss = Math.min(...losses) * 0.9;
+
+    // Fondo
+    ctx.fillStyle = '#2d2d30';
+    ctx.fillRect(0, 0, w, h);
+
+    // Grid lines
+    ctx.strokeStyle = '#3e3e42';
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i <= 5; i++) {
+        const y = padding.top + (h - padding.top - padding.bottom) * i / 5;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(w - padding.right, y);
+        ctx.stroke();
+
+        // Label
+        const val = maxLoss - (maxLoss - minLoss) * i / 5;
+        ctx.fillStyle = '#9e9e9e';
+        ctx.font = '11px monospace';
+        ctx.textAlign = 'right';
+        ctx.fillText(val.toFixed(2), padding.left - 8, y + 4);
+    }
+
+    // Loss curve
+    ctx.strokeStyle = '#569CD6';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    for (let i = 0; i < losses.length; i++) {
+        const x = padding.left + (w - padding.left - padding.right) * i / (losses.length - 1);
+        const y = padding.top + (h - padding.top - padding.bottom) * (1 - (losses[i] - minLoss) / (maxLoss - minLoss));
+
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+
+    ctx.stroke();
+
+    // Labels
+    ctx.fillStyle = '#569CD6';
+    ctx.font = '12px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('Paso de entrenamiento', w / 2, h - 5);
+
+    ctx.save();
+    ctx.translate(15, h / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('Loss', 0, 0);
+    ctx.restore();
+
+    // Title
+    ctx.fillStyle = '#d4d4d4';
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.textAlign = 'left';
+    ctx.fillText(`Training Loss (${historial.length} pasos, min: ${Math.min(...losses).toFixed(3)})`, padding.left, 15);
+}
+
+// ================================================================
+// Utilidades
+// ================================================================
+function escapeHTML(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;');
+}
+
+// Iniciar cuando cargue la página
+document.addEventListener('DOMContentLoaded', cargarDatos);
+</script>
+
+</body>
+</html>

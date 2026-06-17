@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Model weights / checkpoints (generated, large binaries)
+*.pt
+checkpoints/
+
+# Generated training/trace artifacts
+trace_data.json
+
+# Abacus.ai internal marker
+.abacus.donotdelete

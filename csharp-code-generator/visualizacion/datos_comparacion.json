@@ -1,0 +1,1030 @@
+{
+  "comparaciones": [
+    {
+      "query": "crear endpoint API REST para gestionar pedidos",
+      "sin_rag": {
+        "codigo": "// crear <UNK> API REST para gestionar <UNK>\n\n\n ///\n                        /// /// /// /// /// /// </summary>\n                                                                                                            /// </summary>\n                                                                                                                                                                ",
+        "tokens_generados": 100,
+        "info_pasos": [
+          {
+            "paso": 0,
+            "token_id": 3,
+            "probabilidad": 0.2552165389060974,
+            "top_candidatos": [
+              {
+                "id": 7,
+                "prob": 0.41993987560272217
+              },
+              {
+                "id": 3,
+                "prob": 0.2552165389060974
+              },
+              {
+                "id": 8,
+                "prob": 0.20930218696594238
+              },
+              {
+                "id": 142,
+                "prob": 0.02706492878496647
+              },
+              {
+                "id": 129,
+                "prob": 0.014521172270178795
+              },
+              {
+                "id": 145,
+                "prob": 0.014193120412528515
+              },
+              {
+                "id": 138,
+                "prob": 0.012520619668066502
+              },
+              {
+                "id": 132,
+                "prob": 0.009903850965201855
+              },
+              {
+                "id": 146,
+                "prob": 0.00989649910479784
+              },
+              {
+                "id": 169,
+                "prob": 0.0075980862602591515
+              }
+            ]
+          },
+          {
+            "paso": 1,
+            "token_id": 7,
+            "probabilidad": 0.42090702056884766,
+            "top_candidatos": [
+              {
+                "id": 7,
+                "prob": 0.42090702056884766
+              },
+              {
+                "id": 3,
+                "prob": 0.26519715785980225
+              },
+              {
+                "id": 8,
+                "prob": 0.1830572485923767
+              },
+              {
+                "id": 142,
+                "prob": 0.029586030170321465
+              },
+              {
+                "id": 129,
+                "prob": 0.015739429742097855
+              },
+              {
+                "id": 145,
+                "prob": 0.014880618080496788
+              },
+              {
+                "id": 138,
+                "prob": 0.013031607493758202
+              },
+              {
+                "id": 146,
+                "prob": 0.011460374109447002
+              },
+              {
+                "id": 132,
+                "prob": 0.010973022319376469
+              },
+              {
+                "id": 169,
+                "prob": 0.007853763177990913
+              }
+            ]
+          },
+          {
+            "paso": 2,
+            "token_id": 8,
+            "probabilidad": 1.0,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 1.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              },
+              {
+                "id": 6,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 3,
+            "token_id": 8,
+            "probabilidad": 0.8220504522323608,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8220504522323608
+              },
+              {
+                "id": 142,
+                "prob": 0.17794957756996155
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 4,
+            "token_id": 8,
+            "probabilidad": 0.8392606973648071,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8392606973648071
+              },
+              {
+                "id": 142,
+                "prob": 0.16073928773403168
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 5,
+            "token_id": 8,
+            "probabilidad": 0.8474526405334473,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8474526405334473
+              },
+              {
+                "id": 142,
+                "prob": 0.1525474488735199
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 6,
+            "token_id": 8,
+            "probabilidad": 0.8541598320007324,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8541598320007324
+              },
+              {
+                "id": 142,
+                "prob": 0.14584021270275116
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 7,
+            "token_id": 8,
+            "probabilidad": 0.8614803552627563,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8614803552627563
+              },
+              {
+                "id": 142,
+                "prob": 0.13851965963840485
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 8,
+            "token_id": 142,
+            "probabilidad": 0.12608550488948822,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8739144802093506
+              },
+              {
+                "id": 142,
+                "prob": 0.12608550488948822
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 9,
+            "token_id": 7,
+            "probabilidad": 0.10186466574668884,
+            "top_candidatos": [
+              {
+                "id": 146,
+                "prob": 0.4101375937461853
+              },
+              {
+                "id": 142,
+                "prob": 0.26056498289108276
+              },
+              {
+                "id": 147,
+                "prob": 0.1612022966146469
+              },
+              {
+                "id": 7,
+                "prob": 0.10186466574668884
+              },
+              {
+                "id": 8,
+                "prob": 0.011432144790887833
+              },
+              {
+                "id": 138,
+                "prob": 0.011391572654247284
+              },
+              {
+                "id": 129,
+                "prob": 0.007079459261149168
+              },
+              {
+                "id": 212,
+                "prob": 0.006824546493589878
+              },
+              {
+                "id": 132,
+                "prob": 0.006705126725137234
+              },
+              {
+                "id": 120,
+                "prob": 0.006697892211377621
+              }
+            ]
+          }
+        ]
+      },
+      "con_rag": {
+        "codigo": "// <UNK> <UNK> <UNK> <UNK> <UNK> del <UNK> <UNK>\n\n // <UNK> Ejemplo <UNK> <UNK> <UNK> <UNK> <UNK> <UNK>\n\n public class Order Service: I Order Service\n {\n private readonly I Order Repository repository;\n    private readonly I Product Service <UNK> Service;\n        private readonly I Logger<Order Service> logger;\n            \n            public Order Service(\n                I Order Repository repository,\n                        I Product Service <UNK> Service,\n                                I Logger<Order Service> logger)\n                                        {\n                                            repository = repository;\n                                                    <UNK> Service = <UNK> Service;\n                                                            logger = logger;\n                                                                    }\n                                                                        \n                                                                        public async Task<Order Dto> Create Order\n                                                                            // <UNK> <UNK>\n                                                                            \n                                                                            \n                                                                            // <UNK> Ejemplo <UNK> <UNK> <UNK> REST <UNK> <UNK>\n                                                                            \n                                                                            [Api Controller]\n                                                                            [Route(\"api/[controller]\")]\n                                                                            public class Products Controller: Controller Base\n                                                                            {\n                                                                            private readonly I Product Service service;\n                                                                                \n                                                                                public Products Controller(I Product Service service)\n                                                                                    {\n                                                                                        service = service;\n                                                                                                }\n                                                                                                    \n                                                                                                    [Http Get]\n                                                                                                        public async Task<Action Result<<UNK> Result<Product Dto >>> Get All(\n                                                                                                            [From Query] int page = 1,[From Query] int page Size = 10)\n                                                                                                                    {\n                                                                                                                        var <UNK> = await service.Get All Async(page, page Size);\n                                                                                                                                return Ok(<UNK>);\n                                                                                                                                        }\n                                                                                                                                            \n                                                                                                                                            [<UNK>\n                                                                                                                                                // <UNK> <UNK>\n                                                                                                                                                \n                                                                                                                                                \n                                                                                                                                                // <UNK> Ejemplo <UNK> <UNK> <UNK> <UNK> <UNK> <UNK>\n                                                                                                                                                \n                                                                                                                                                public class <UNK> Result<T>\n                                                                                                                                                {\n                                                                                                                                                public I Read <UNK> List<T> Items { get; set; } = new List<T>();\n                                                                                                                                                    public int Total Count { get; set; }\n                                                                                                                                                        public int <UNK> <UNK> { get; set; }\n                                                                                                                                                            public int <UNK> Size { get; set; }\n                                                                                                                                                                public int Total <UNK> =>(int) Math.<UNK>(Total Count /(double) <UNK> Size);\n                                                                                                                                                                    public bool <UNK> <UNK> <UNK> => <UNK> <UNK>> 1;\n                                                                                                                                                                        public bool <UNK> <UNK> <UNK> => <UNK> <UNK><Total <UNK>;\n                                                                                                                                                                            \n                                                                                                                                                                            public static <UNK> Result<T> Create(\n                                                                                                                                                                                I Read <UNK> List<T> items, int <UNK> Count, int page <UNK>\n                                                                                                                                                                                        // <UNK> <UNK>\n                                                                                                                                                                                        \n                                                                                                                                                                                        \n                                                                                                                                                                                        // <UNK> <UNK> <UNK> <UNK> Generar código a <UNK> <UNK>\n                                                                                                                                                                                        \n                                                                                                                                                                                        // crear <UNK> API REST para gestionar <UNK>\n                                                                                                                                                                                        \n                                                                                                                                                                                        <summary>\n                                                                                                                                                                                        ///\n                                                                                                                                                                                                                        /// </summary>\n                                                                                                                                                                                                                                                                                                            /// /// <summary>\n                                                                                                                                                                                                                                                                                                                /// /// ///\n                                                                                                                                                                                                                                                                                                                        /// <summary>\n                                                                                                                                                                                                                                                                                                                            /// public /// <summary>\n                                                                                                                                                                                                                                                                                                                                                        ///\n                                                                                                                                                                                                                                                                                                                                                                        ///(\n                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+        "tokens_generados": 100,
+        "info_pasos": [
+          {
+            "paso": 0,
+            "token_id": 3,
+            "probabilidad": 0.15382567048072815,
+            "top_candidatos": [
+              {
+                "id": 7,
+                "prob": 0.5556387901306152
+              },
+              {
+                "id": 8,
+                "prob": 0.18359415233135223
+              },
+              {
+                "id": 3,
+                "prob": 0.15382567048072815
+              },
+              {
+                "id": 142,
+                "prob": 0.023261571303009987
+              },
+              {
+                "id": 129,
+                "prob": 0.014934255741536617
+              },
+              {
+                "id": 145,
+                "prob": 0.013168798759579659
+              },
+              {
+                "id": 138,
+                "prob": 0.012352890335023403
+              },
+              {
+                "id": 132,
+                "prob": 0.010709683410823345
+              },
+              {
+                "id": 146,
+                "prob": 0.010570917278528214
+              },
+              {
+                "id": 169,
+                "prob": 0.007734582293778658
+              }
+            ]
+          },
+          {
+            "paso": 1,
+            "token_id": 146,
+            "probabilidad": 0.011059603653848171,
+            "top_candidatos": [
+              {
+                "id": 7,
+                "prob": 0.5533332824707031
+              },
+              {
+                "id": 8,
+                "prob": 0.18462419509887695
+              },
+              {
+                "id": 3,
+                "prob": 0.15430378913879395
+              },
+              {
+                "id": 142,
+                "prob": 0.023678306490182877
+              },
+              {
+                "id": 129,
+                "prob": 0.014563750475645065
+              },
+              {
+                "id": 145,
+                "prob": 0.013123084791004658
+              },
+              {
+                "id": 138,
+                "prob": 0.012562189251184464
+              },
+              {
+                "id": 146,
+                "prob": 0.011059603653848171
+              },
+              {
+                "id": 132,
+                "prob": 0.010674472898244858
+              },
+              {
+                "id": 169,
+                "prob": 0.007637131027877331
+              }
+            ]
+          },
+          {
+            "paso": 2,
+            "token_id": 7,
+            "probabilidad": 1.0,
+            "top_candidatos": [
+              {
+                "id": 7,
+                "prob": 1.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 8,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              },
+              {
+                "id": 6,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 3,
+            "token_id": 8,
+            "probabilidad": 1.0,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 1.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              },
+              {
+                "id": 6,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 4,
+            "token_id": 8,
+            "probabilidad": 0.8452695608139038,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8452695608139038
+              },
+              {
+                "id": 142,
+                "prob": 0.15473048388957977
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 5,
+            "token_id": 8,
+            "probabilidad": 0.8428114056587219,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8428114056587219
+              },
+              {
+                "id": 142,
+                "prob": 0.15718857944011688
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 6,
+            "token_id": 8,
+            "probabilidad": 0.8392857909202576,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8392857909202576
+              },
+              {
+                "id": 142,
+                "prob": 0.16071420907974243
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 7,
+            "token_id": 8,
+            "probabilidad": 0.8372372388839722,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8372372388839722
+              },
+              {
+                "id": 142,
+                "prob": 0.16276271641254425
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 8,
+            "token_id": 8,
+            "probabilidad": 0.8417187929153442,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8417187929153442
+              },
+              {
+                "id": 142,
+                "prob": 0.15828125178813934
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          },
+          {
+            "paso": 9,
+            "token_id": 8,
+            "probabilidad": 0.8433650732040405,
+            "top_candidatos": [
+              {
+                "id": 8,
+                "prob": 0.8433650732040405
+              },
+              {
+                "id": 142,
+                "prob": 0.15663500130176544
+              },
+              {
+                "id": 7,
+                "prob": 0.0
+              },
+              {
+                "id": 4,
+                "prob": 0.0
+              },
+              {
+                "id": 9,
+                "prob": 0.0
+              },
+              {
+                "id": 3,
+                "prob": 0.0
+              },
+              {
+                "id": 1,
+                "prob": 0.0
+              },
+              {
+                "id": 5,
+                "prob": 0.0
+              },
+              {
+                "id": 0,
+                "prob": 0.0
+              },
+              {
+                "id": 2,
+                "prob": 0.0
+              }
+            ]
+          }
+        ],
+        "snippets_recuperados": [
+          {
+            "rank": 1,
+            "id": "rag_service_order",
+            "similitud": 0.1823279857635498,
+            "categoria": "servicio",
+            "descripcion": "Servicio de pedidos con lógica de negocio, validación y cálculo de totales usando LINQ",
+            "codigo": "public class OrderService : IOrderService\n{\n    private readonly IOrderRepository _repository;\n    private readonly IProductService _productService;\n    private readonly ILogger<OrderService> _logger;\n\n    public OrderService(\n        IOrderRepository repository,\n        IProductService productService,\n        ILogger<OrderService> logger)\n    {\n        _repository = repository;\n        _productService = productService;\n        _logger = logger;\n    }\n\n    public async Task<OrderDto> CreateOrderAsync(CreateOrderDto dto)\n    {\n        // Validar que todos los productos existen\n        var productIds = dto.Items.Select(i => i.ProductId).Distinct();\n        var products = await _productService.GetByIdsAsync(productIds);\n\n        if (products.Count() != productIds.Count())\n            throw new ValidationException(\"Algunos productos no existen\");\n\n        // Calcular totales usando LINQ\n        var orderItems = dto.Items.Select(item =>\n        {\n            var product = products.First(p => p.Id == item.ProductId);\n            return new OrderItem\n            {\n                ProductId = item.ProductId,\n                Quantity = item.Quantity,\n                UnitPrice = product.Price,\n                Subtotal = product.Price * item.Quantity\n            };\n        }).ToList();\n\n        var order = new Order\n        {\n            CustomerId = dto.CustomerId,\n            Items = orderItems,\n            Total = orderItems.Sum(i => i.Subtotal),\n            CreatedAt = DateTime.UtcNow,\n            Status = OrderStatus.Pending\n        };\n\n        await _repository.AddAsync(order);\n        await _repository.SaveChangesAsync();\n\n        return _mapper.Map<OrderDto>(order);\n    }\n}",
+            "etiquetas": [
+              "servicio",
+              "negocio",
+              "pedido",
+              "orden",
+              "calculo",
+              "linq",
+              "validacion"
+            ],
+            "entidad": "Order",
+            "patron": "Business Service"
+          },
+          {
+            "rank": 2,
+            "id": "rag_controller_product",
+            "similitud": 0.18190422654151917,
+            "categoria": "controller",
+            "descripcion": "Controller REST completo para gestionar productos con operaciones CRUD, paginación y búsqueda",
+            "codigo": "[ApiController]\n[Route(\"api/[controller]\")]\npublic class ProductsController : ControllerBase\n{\n    private readonly IProductService _service;\n\n    public ProductsController(IProductService service)\n    {\n        _service = service;\n    }\n\n    [HttpGet]\n    public async Task<ActionResult<PagedResult<ProductDto>>> GetAll(\n        [FromQuery] int page = 1, [FromQuery] int pageSize = 10)\n    {\n        var result = await _service.GetAllAsync(page, pageSize);\n        return Ok(result);\n    }\n\n    [HttpGet(\"{id}\")]\n    public async Task<ActionResult<ProductDto>> GetById(int id)\n    {\n        var product = await _service.GetByIdAsync(id);\n        if (product == null) return NotFound();\n        return Ok(product);\n    }\n\n    [HttpPost]\n    public async Task<ActionResult<ProductDto>> Create([FromBody] CreateProductDto dto)\n    {\n        var created = await _service.CreateAsync(dto);\n        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);\n    }\n\n    [HttpPut(\"{id}\")]\n    public async Task<ActionResult<ProductDto>> Update(int id, [FromBody] UpdateProductDto dto)\n    {\n        var updated = await _service.UpdateAsync(id, dto);\n        return Ok(updated);\n    }\n\n    [HttpDelete(\"{id}\")]\n    public async Task<IActionResult> Delete(int id)\n    {\n        await _service.DeleteAsync(id);\n        return NoContent();\n    }\n}",
+            "etiquetas": [
+              "controller",
+              "rest",
+              "api",
+              "crud",
+              "producto",
+              "endpoint",
+              "http"
+            ],
+            "entidad": "Product",
+            "patron": "REST Controller"
+          },
+          {
+            "rank": 3,
+            "id": "rag_dto_pagination",
+            "similitud": 0.141309916973114,
+            "categoria": "dto",
+            "descripcion": "DTO de resultado paginado genérico para APIs REST con información de paginación",
+            "codigo": "public class PagedResult<T>\n{\n    public IReadOnlyList<T> Items { get; set; } = new List<T>();\n    public int TotalCount { get; set; }\n    public int PageNumber { get; set; }\n    public int PageSize { get; set; }\n    public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);\n    public bool HasPreviousPage => PageNumber > 1;\n    public bool HasNextPage => PageNumber < TotalPages;\n\n    public static PagedResult<T> Create(\n        IReadOnlyList<T> items, int totalCount, int pageNumber, int pageSize)\n    {\n        return new PagedResult<T>\n        {\n            Items = items,\n            TotalCount = totalCount,\n            PageNumber = pageNumber,\n            PageSize = pageSize\n        };\n    }\n}",
+            "etiquetas": [
+              "dto",
+              "paginacion",
+              "generico",
+              "api",
+              "resultado",
+              "lista"
+            ],
+            "entidad": "Pagination",
+            "patron": "Pagination DTO"
+          }
+        ],
+        "tiempo_busqueda_ms": 0.2281665802001953,
+        "contexto": "// === CONTEXTO RAG (snippets relevantes del proyecto) ===\n\n// --- Ejemplo (similitud: 0.18, patrón: Business Service) ---\n\npublic class OrderService : IOrderService\n{\n    private readonly IOrderRepository _repository;\n    private readonly IProductService _productService;\n    private readonly ILogger<OrderService> _logger;\n\n    public OrderService(\n        IOrderRepository repository,\n        IProductService productService,\n        ILogger<OrderService> logger)\n    {\n        _repository = repository;\n        _productService = productService;\n        _logger = logger;\n    }\n\n    public async Task<OrderDto> CreateOrder\n// ... (truncado)\n\n\n// --- Ejemplo (similitud: 0.18, patrón: REST Controller) ---\n\n[ApiController]\n[Route(\"api/[controller]\")]\npublic class ProductsController : ControllerBase\n{\n    private readonly IProductService _service;\n\n    public ProductsController(IProductService service)\n    {\n        _service = service;\n    }\n\n    [HttpGet]\n    public async Task<ActionResult<PagedResult<ProductDto>>> GetAll(\n        [FromQuery] int page = 1, [FromQuery] int pageSize = 10)\n    {\n        var result = await _service.GetAllAsync(page, pageSize);\n        return Ok(result);\n    }\n\n    [Htt\n// ... (truncado)\n\n\n// --- Ejemplo (similitud: 0.14, patrón: Pagination DTO) ---\n\npublic class PagedResult<T>\n{\n    public IReadOnlyList<T> Items { get; set; } = new List<T>();\n    public int TotalCount { get; set; }\n    public int PageNumber { get; set; }\n    public int PageSize { get; set; }\n    public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);\n    public bool HasPreviousPage => PageNumber > 1;\n    public bool HasNextPage => PageNumber < TotalPages;\n\n    public static PagedResult<T> Create(\n        IReadOnlyList<T> items, int totalCount, int pageNum\n// ... (truncado)\n\n\n// === FIN CONTEXTO RAG. Generar código a continuación: ===\n"
+      },
+      "metricas": {
+        "longitud_sin_rag": 394,
+        "longitud_con_rag": 11601,
+        "keywords_sin_rag": 0,
+        "keywords_con_rag": 10,
+        "balance_llaves_sin_rag": 0,
+        "balance_llaves_con_rag": 3,
+        "snippets_recuperados": 3,
+        "similitud_promedio": 0.16851404309272766,
+        "tiempo_busqueda_ms": 0.2281665802001953
+      }
+    }
+  ]
+}

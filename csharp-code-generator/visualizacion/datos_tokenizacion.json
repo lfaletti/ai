@@ -1,0 +1,686 @@
+{
+  "ejemplos": [
+    {
+      "codigo_original": "public async Task<List<ProductDto>> GetAllAsync(int page = 1)",
+      "tokens": [
+        {
+          "texto": "public",
+          "id": 66,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "async",
+          "id": 14,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "Task",
+          "id": 10,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "<",
+          "id": 130,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "List",
+          "id": 284,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "<",
+          "id": 130,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Product",
+          "id": 246,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Dto",
+          "id": 143,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": ">>",
+          "id": 113,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Get",
+          "id": 151,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "All",
+          "id": 198,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Async",
+          "id": 144,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "(",
+          "id": 120,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "int",
+          "id": 46,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "page",
+          "id": 156,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": "=",
+          "id": 131,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "1",
+          "id": 206,
+          "categoria": "number",
+          "color": "#B5CEA8"
+        },
+        {
+          "texto": ")",
+          "id": 121,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        }
+      ],
+      "estadisticas": {
+        "total_tokens": 19,
+        "tokens_unicos": 18,
+        "ratio_compresion": 3.21,
+        "por_categoria": {
+          "keywords": 4,
+          "identificadores": 8,
+          "operadores": 0,
+          "delimitadores": 5,
+          "strings": 0,
+          "numeros": 1,
+          "comentarios": 0,
+          "especiales": 1
+        }
+      }
+    },
+    {
+      "codigo_original": "[HttpGet(\"{id}\")]\npublic async Task<ActionResult<ProductDto>> GetById(int id)",
+      "tokens": [
+        {
+          "texto": "[",
+          "id": 135,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Http",
+          "id": 175,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Get",
+          "id": 151,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "(",
+          "id": 120,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "\"{id}\"",
+          "id": 262,
+          "categoria": "string",
+          "color": "#CE9178"
+        },
+        {
+          "texto": ")",
+          "id": 121,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "]",
+          "id": 136,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        },
+        {
+          "texto": "public",
+          "id": 66,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "async",
+          "id": 14,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "Task",
+          "id": 10,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "<",
+          "id": 130,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Action",
+          "id": 182,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Result",
+          "id": 189,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "<",
+          "id": 130,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Product",
+          "id": 246,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Dto",
+          "id": 143,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": ">>",
+          "id": 113,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Get",
+          "id": 151,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "By",
+          "id": 172,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Id",
+          "id": 157,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "(",
+          "id": 120,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "int",
+          "id": 46,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "id",
+          "id": 148,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": ")",
+          "id": 121,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        }
+      ],
+      "estadisticas": {
+        "total_tokens": 26,
+        "tokens_unicos": 21,
+        "ratio_compresion": 2.96,
+        "por_categoria": {
+          "keywords": 4,
+          "identificadores": 11,
+          "operadores": 0,
+          "delimitadores": 8,
+          "strings": 1,
+          "numeros": 0,
+          "comentarios": 0,
+          "especiales": 2
+        }
+      }
+    },
+    {
+      "codigo_original": "var result = items.Where(x => x.IsActive).OrderBy(x => x.Name).ToList();",
+      "tokens": [
+        {
+          "texto": "var",
+          "id": 86,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "result",
+          "id": -1,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": "=",
+          "id": 131,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "items",
+          "id": 242,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": ".",
+          "id": 126,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Where",
+          "id": 372,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "(",
+          "id": 120,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "x",
+          "id": 220,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": "=>",
+          "id": 95,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "x",
+          "id": 220,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": ".",
+          "id": 126,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Is",
+          "id": 272,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Active",
+          "id": -1,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": ")",
+          "id": 121,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": ".",
+          "id": 126,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Order",
+          "id": 218,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "By",
+          "id": 172,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "(",
+          "id": 120,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "x",
+          "id": 220,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": "=>",
+          "id": 95,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "x",
+          "id": 220,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": ".",
+          "id": 126,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "Name",
+          "id": -1,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": ")",
+          "id": 121,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": ".",
+          "id": 126,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "To",
+          "id": 329,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "List",
+          "id": 284,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "(",
+          "id": 120,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": ")",
+          "id": 121,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": ";",
+          "id": 129,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        }
+      ],
+      "estadisticas": {
+        "total_tokens": 31,
+        "tokens_unicos": 19,
+        "ratio_compresion": 2.32,
+        "por_categoria": {
+          "keywords": 1,
+          "identificadores": 14,
+          "operadores": 2,
+          "delimitadores": 13,
+          "strings": 0,
+          "numeros": 0,
+          "comentarios": 0,
+          "especiales": 1
+        }
+      }
+    },
+    {
+      "codigo_original": "public class OrderService : IOrderService\n{\n    private readonly IOrderRepository _repo;\n}",
+      "tokens": [
+        {
+          "texto": "public",
+          "id": 66,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "class",
+          "id": 23,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "Order",
+          "id": 218,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Service",
+          "id": 169,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": ":",
+          "id": 128,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "I",
+          "id": 145,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Order",
+          "id": 218,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Service",
+          "id": 169,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        },
+        {
+          "texto": "{",
+          "id": 138,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        },
+        {
+          "texto": "<INDENT>",
+          "id": 8,
+          "categoria": "whitespace",
+          "color": "#333333"
+        },
+        {
+          "texto": "private",
+          "id": 64,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "readonly",
+          "id": 67,
+          "categoria": "keyword",
+          "color": "#569CD6"
+        },
+        {
+          "texto": "I",
+          "id": 145,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Order",
+          "id": 218,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "Repository",
+          "id": 290,
+          "categoria": "type_or_class",
+          "color": "#4EC9B0"
+        },
+        {
+          "texto": "repo",
+          "id": -1,
+          "categoria": "identifier",
+          "color": "#9CDCFE"
+        },
+        {
+          "texto": ";",
+          "id": 129,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        },
+        {
+          "texto": "}",
+          "id": 140,
+          "categoria": "operator",
+          "color": "#D4D4D4"
+        },
+        {
+          "texto": "<NL>",
+          "id": 7,
+          "categoria": "whitespace",
+          "color": "#333333"
+        }
+      ],
+      "estadisticas": {
+        "total_tokens": 22,
+        "tokens_unicos": 15,
+        "ratio_compresion": 4.09,
+        "por_categoria": {
+          "keywords": 4,
+          "identificadores": 9,
+          "operadores": 0,
+          "delimitadores": 4,
+          "strings": 0,
+          "numeros": 0,
+          "comentarios": 0,
+          "especiales": 5
+        }
+      }
+    }
+  ],
+  "vocabulario_info": {
+    "total_tokens": 1123,
+    "tokens_especiales": [
+      "<PAD>",
+      "<UNK>",
+      "<BOS>",
+      "<EOS>",
+      "<FIM_PREFIX>",
+      "<FIM_SUFFIX>",
+      "<FIM_MIDDLE>"
+    ],
+    "num_keywords_csharp": 85,
+    "num_operadores": 22
+  }
+}

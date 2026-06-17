@@ -1,0 +1,2752 @@
+{
+  "ejemplos": [
+    {
+      "prompt": "public class",
+      "codigo_generado": "public class\n </summary>\n /// }\n                                                                        /// <summary>\n                                                                                                        /// <summary> <summary>\n                                                                                                                        ",
+      "tokens_generados": 50,
+      "pasos": [
+        {
+          "paso": 0,
+          "token": "</summary>",
+          "probabilidad": 0.0081,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.5193
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.1659
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.1149
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0271
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0233
+            }
+          ]
+        },
+        {
+          "paso": 1,
+          "token": "<NL>",
+          "probabilidad": 0.9806,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.9806
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0194
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 2,
+          "token": "<INDENT>",
+          "probabilidad": 1.0,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 1.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 3,
+          "token": "<INDENT>",
+          "probabilidad": 0.8359,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8359
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1641
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 4,
+          "token": "<INDENT>",
+          "probabilidad": 0.8528,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8528
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1472
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 5,
+          "token": "<INDENT>",
+          "probabilidad": 0.8616,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8616
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1384
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 6,
+          "token": "<INDENT>",
+          "probabilidad": 0.868,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.868
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.132
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 7,
+          "token": "<INDENT>",
+          "probabilidad": 0.883,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.883
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.117
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 8,
+          "token": "<INDENT>",
+          "probabilidad": 0.878,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.878
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.122
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 9,
+          "token": "<INDENT>",
+          "probabilidad": 0.8814,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8814
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1186
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 10,
+          "token": "<INDENT>",
+          "probabilidad": 0.8875,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8875
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1125
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 11,
+          "token": "<INDENT>",
+          "probabilidad": 0.8905,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8905
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1095
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 12,
+          "token": "<INDENT>",
+          "probabilidad": 0.8908,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8908
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1092
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 13,
+          "token": "<INDENT>",
+          "probabilidad": 0.8911,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8911
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1089
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 14,
+          "token": "<INDENT>",
+          "probabilidad": 0.8926,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8926
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1074
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 15,
+          "token": "<INDENT>",
+          "probabilidad": 0.8977,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8977
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1023
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 16,
+          "token": "<INDENT>",
+          "probabilidad": 0.8814,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8814
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1047
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0139
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 17,
+          "token": "<INDENT>",
+          "probabilidad": 0.8788,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8788
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1076
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0137
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 18,
+          "token": "<INDENT>",
+          "probabilidad": 0.8828,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8828
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1032
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.014
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 19,
+          "token": "<INDENT>",
+          "probabilidad": 0.898,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.898
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.102
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 20,
+          "token": "///",
+          "probabilidad": 0.0985,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.9015
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0985
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 21,
+          "token": "}",
+          "probabilidad": 0.0071,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.2556
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.233
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1941
+            },
+            {
+              "token": "</summary>",
+              "probabilidad": 0.1022
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0405
+            }
+          ]
+        },
+        {
+          "paso": 22,
+          "token": "<NL>",
+          "probabilidad": 0.8779,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.8779
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0546
+            },
+            {
+              "token": "}",
+              "probabilidad": 0.0282
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.014
+            },
+            {
+              "token": "(",
+              "probabilidad": 0.0074
+            }
+          ]
+        },
+        {
+          "paso": 23,
+          "token": "<INDENT>",
+          "probabilidad": 0.9477,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.9477
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0523
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 24,
+          "token": "<INDENT>",
+          "probabilidad": 0.8846,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8846
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.101
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0144
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 25,
+          "token": "<INDENT>",
+          "probabilidad": 0.9005,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.9005
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0995
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 26,
+          "token": "<INDENT>",
+          "probabilidad": 0.8839,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8839
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1021
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.014
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 27,
+          "token": "<INDENT>",
+          "probabilidad": 0.8822,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8822
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1029
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.015
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 28,
+          "token": "<INDENT>",
+          "probabilidad": 0.8862,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8862
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0992
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0145
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 29,
+          "token": "<INDENT>",
+          "probabilidad": 0.887,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.887
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0981
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0149
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 30,
+          "token": "<INDENT>",
+          "probabilidad": 0.8852,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8852
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0995
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0153
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 31,
+          "token": "///",
+          "probabilidad": 0.0995,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8855
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0995
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.015
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 32,
+          "token": "<summary>",
+          "probabilidad": 0.2336,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.2461
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.2336
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.199
+            },
+            {
+              "token": "</summary>",
+              "probabilidad": 0.1038
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0405
+            }
+          ]
+        },
+        {
+          "paso": 33,
+          "token": "<NL>",
+          "probabilidad": 0.9436,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.9436
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.0271
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0197
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0096
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 34,
+          "token": "<INDENT>",
+          "probabilidad": 0.9435,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.9435
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0565
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 35,
+          "token": "<INDENT>",
+          "probabilidad": 0.8818,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8818
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1032
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0151
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 36,
+          "token": "<INDENT>",
+          "probabilidad": 0.884,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.884
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1005
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0154
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 37,
+          "token": "<INDENT>",
+          "probabilidad": 0.8843,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8843
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1009
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0148
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 38,
+          "token": "///",
+          "probabilidad": 0.1016,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8836
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1016
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0147
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 39,
+          "token": "<summary>",
+          "probabilidad": 0.2364,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.2454
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.2364
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1994
+            },
+            {
+              "token": "</summary>",
+              "probabilidad": 0.1009
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0413
+            }
+          ]
+        },
+        {
+          "paso": 40,
+          "token": "<summary>",
+          "probabilidad": 0.0274,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.9433
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.0274
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0196
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0096
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 41,
+          "token": "<NL>",
+          "probabilidad": 0.9432,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.9432
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.0275
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0197
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0097
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 42,
+          "token": "<INDENT>",
+          "probabilidad": 0.9442,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.9442
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0558
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 43,
+          "token": "<INDENT>",
+          "probabilidad": 0.8825,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8825
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.103
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0146
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 44,
+          "token": "<INDENT>",
+          "probabilidad": 0.8834,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8834
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1014
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0152
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 45,
+          "token": "<INDENT>",
+          "probabilidad": 0.8853,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8853
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1002
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0146
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 46,
+          "token": "<INDENT>",
+          "probabilidad": 0.8817,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8817
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1032
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0151
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 47,
+          "token": "<INDENT>",
+          "probabilidad": 0.884,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.884
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1006
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0155
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 48,
+          "token": "<INDENT>",
+          "probabilidad": 0.8861,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8861
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0984
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0155
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 49,
+          "token": "<INDENT>",
+          "probabilidad": 0.884,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.884
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.101
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.015
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prompt": "[HttpGet]",
+      "codigo_generado": "[Http Get]\n",
+      "tokens_generados": 1,
+      "pasos": [
+        {
+          "paso": 0,
+          "token": "<EOS>",
+          "probabilidad": 0.1834,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.4347
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.1834
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.1561
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0321
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0227
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "prompt": "public async Task<",
+      "codigo_generado": "public async Task<\n Create Service Service\n /// <summary>\n                            ///( ///",
+      "tokens_generados": 50,
+      "pasos": [
+        {
+          "paso": 0,
+          "token": "Create",
+          "probabilidad": 0.0057,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.4137
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.1953
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.1644
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0334
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0217
+            }
+          ]
+        },
+        {
+          "paso": 1,
+          "token": "Service",
+          "probabilidad": 0.0083,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.335
+            },
+            {
+              "token": "Create",
+              "probabilidad": 0.2107
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.1181
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0276
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.0269
+            }
+          ]
+        },
+        {
+          "paso": 2,
+          "token": "Service",
+          "probabilidad": 0.0977,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.6697
+            },
+            {
+              "token": "Service",
+              "probabilidad": 0.0977
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.087
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0231
+            },
+            {
+              "token": ">",
+              "probabilidad": 0.0139
+            }
+          ]
+        },
+        {
+          "paso": 3,
+          "token": "<NL>",
+          "probabilidad": 0.6796,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.6796
+            },
+            {
+              "token": "Service",
+              "probabilidad": 0.0945
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0844
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0221
+            },
+            {
+              "token": ">",
+              "probabilidad": 0.0138
+            }
+          ]
+        },
+        {
+          "paso": 4,
+          "token": "<INDENT>",
+          "probabilidad": 1.0,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 1.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 5,
+          "token": "<INDENT>",
+          "probabilidad": 0.8301,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8301
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1699
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 6,
+          "token": "<INDENT>",
+          "probabilidad": 0.8292,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8292
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1708
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 7,
+          "token": "<INDENT>",
+          "probabilidad": 0.8394,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8394
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1606
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 8,
+          "token": "<INDENT>",
+          "probabilidad": 0.8519,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8519
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1481
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 9,
+          "token": "<INDENT>",
+          "probabilidad": 0.8595,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8595
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1405
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 10,
+          "token": "<INDENT>",
+          "probabilidad": 0.8623,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8623
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1377
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 11,
+          "token": "///",
+          "probabilidad": 0.1353,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8647
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1353
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 12,
+          "token": "<summary>",
+          "probabilidad": 0.3108,
+          "candidatos": [
+            {
+              "token": "<summary>",
+              "probabilidad": 0.3108
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.2302
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.148
+            },
+            {
+              "token": "</summary>",
+              "probabilidad": 0.1367
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0225
+            }
+          ]
+        },
+        {
+          "paso": 13,
+          "token": "<NL>",
+          "probabilidad": 0.9588,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.9588
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.0244
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0168
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 14,
+          "token": "<INDENT>",
+          "probabilidad": 1.0,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 1.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<EOS>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 15,
+          "token": "<INDENT>",
+          "probabilidad": 0.8577,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8577
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1423
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 16,
+          "token": "<INDENT>",
+          "probabilidad": 0.8657,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8657
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1343
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 17,
+          "token": "<INDENT>",
+          "probabilidad": 0.8709,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8709
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1291
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 18,
+          "token": "<INDENT>",
+          "probabilidad": 0.8769,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8769
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1231
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 19,
+          "token": "<INDENT>",
+          "probabilidad": 0.8778,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8778
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1222
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 20,
+          "token": "<INDENT>",
+          "probabilidad": 0.8802,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8802
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1198
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 21,
+          "token": "<INDENT>",
+          "probabilidad": 0.8792,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8792
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1208
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 22,
+          "token": "<INDENT>",
+          "probabilidad": 0.883,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.883
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.117
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 23,
+          "token": "///",
+          "probabilidad": 0.1129,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8871
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1129
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 24,
+          "token": "(",
+          "probabilidad": 0.0124,
+          "candidatos": [
+            {
+              "token": "<summary>",
+              "probabilidad": 0.2861
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.2218
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.178
+            },
+            {
+              "token": "</summary>",
+              "probabilidad": 0.123
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.029
+            }
+          ]
+        },
+        {
+          "paso": 25,
+          "token": "<INDENT>",
+          "probabilidad": 0.0917,
+          "candidatos": [
+            {
+              "token": "<NL>",
+              "probabilidad": 0.7071
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.0917
+            },
+            {
+              "token": "(",
+              "probabilidad": 0.0777
+            },
+            {
+              "token": ";",
+              "probabilidad": 0.0191
+            },
+            {
+              "token": "<summary>",
+              "probabilidad": 0.011
+            }
+          ]
+        },
+        {
+          "paso": 26,
+          "token": "<INDENT>",
+          "probabilidad": 0.8825,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8825
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1175
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 27,
+          "token": "<INDENT>",
+          "probabilidad": 0.8846,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8846
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1154
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 28,
+          "token": "<INDENT>",
+          "probabilidad": 0.8833,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8833
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1167
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 29,
+          "token": "<INDENT>",
+          "probabilidad": 0.8838,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8838
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1162
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 30,
+          "token": "<INDENT>",
+          "probabilidad": 0.8848,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8848
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1152
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 31,
+          "token": "<INDENT>",
+          "probabilidad": 0.8873,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8873
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1127
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 32,
+          "token": "<INDENT>",
+          "probabilidad": 0.8888,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8888
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1112
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 33,
+          "token": "<INDENT>",
+          "probabilidad": 0.8864,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8864
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1136
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 34,
+          "token": "<INDENT>",
+          "probabilidad": 0.8896,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8896
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1104
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 35,
+          "token": "<INDENT>",
+          "probabilidad": 0.8894,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8894
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1106
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 36,
+          "token": "<INDENT>",
+          "probabilidad": 0.8888,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8888
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1112
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 37,
+          "token": "<INDENT>",
+          "probabilidad": 0.8923,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8923
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1077
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 38,
+          "token": "<INDENT>",
+          "probabilidad": 0.8919,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8919
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1081
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 39,
+          "token": "///",
+          "probabilidad": 0.1064,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8936
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1064
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 40,
+          "token": "<INDENT>",
+          "probabilidad": 0.034,
+          "candidatos": [
+            {
+              "token": "<summary>",
+              "probabilidad": 0.2611
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.2135
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.2037
+            },
+            {
+              "token": "</summary>",
+              "probabilidad": 0.1126
+            },
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.034
+            }
+          ]
+        },
+        {
+          "paso": 41,
+          "token": "<INDENT>",
+          "probabilidad": 0.8928,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8928
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1072
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 42,
+          "token": "<INDENT>",
+          "probabilidad": 0.8945,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8945
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1055
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 43,
+          "token": "<INDENT>",
+          "probabilidad": 0.8958,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8958
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1042
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 44,
+          "token": "<INDENT>",
+          "probabilidad": 0.8927,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8927
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1073
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 45,
+          "token": "<INDENT>",
+          "probabilidad": 0.8955,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8955
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1045
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 46,
+          "token": "<INDENT>",
+          "probabilidad": 0.8979,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8979
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1021
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 47,
+          "token": "<INDENT>",
+          "probabilidad": 0.8951,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8951
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1049
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 48,
+          "token": "<INDENT>",
+          "probabilidad": 0.8923,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.8923
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.1077
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        },
+        {
+          "paso": 49,
+          "token": "<INDENT>",
+          "probabilidad": 0.897,
+          "candidatos": [
+            {
+              "token": "<INDENT>",
+              "probabilidad": 0.897
+            },
+            {
+              "token": "///",
+              "probabilidad": 0.103
+            },
+            {
+              "token": "<NL>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<FIM_PREFIX>",
+              "probabilidad": 0.0
+            },
+            {
+              "token": "<DEDENT>",
+              "probabilidad": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
