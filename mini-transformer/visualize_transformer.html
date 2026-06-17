@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐉 Mini Transformer — Visualización Interactiva</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --bg2: #161b22;
+            --bg3: #1c2333;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text2: #8b949e;
+            --accent: #58a6ff;
+            --accent2: #3fb950;
+            --accent3: #d2a8ff;
+            --accent4: #f0883e;
+            --red: #f85149;
+            --grad1: #58a6ff;
+            --grad2: #d2a8ff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1e2e 0%, #0f1117 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 2rem 1.5rem;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, var(--grad1), var(--grad2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.3rem;
+        }
+        .header p { color: var(--text2); font-size: 1rem; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 0.6rem 1.4rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text2);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { border-color: var(--accent); color: var(--text); }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Content area */
+        .content { max-width: 1300px; margin: 0 auto; padding: 1.5rem; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .card h4 {
+            color: var(--accent3);
+            margin: 1rem 0 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Architecture SVG */
+        .arch-container { width: 100%; overflow-x: auto; }
+        .arch-svg text { font-family: 'Segoe UI', system-ui, sans-serif; }
+
+        /* Attention Heatmap */
+        .heatmap-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .heatmap-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .heatmap-controls label { color: var(--text2); font-size: 0.9rem; }
+        .heatmap-controls select {
+            background: var(--bg3);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+        canvas.heatmap { border-radius: 8px; }
+
+        /* Generation animation */
+        .gen-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .gen-controls {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .gen-controls button {
+            padding: 0.5rem 1.2rem;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .gen-controls button:hover { opacity: 0.85; }
+        .gen-controls button:disabled { opacity: 0.4; cursor: not-allowed; }
+        .gen-controls button.secondary {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+        }
+        .token-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 8px;
+            min-height: 3rem;
+            border: 1px solid var(--border);
+        }
+        .token-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .token-chip.prompt { background: #1a3a5c; color: var(--accent); }
+        .token-chip.generated { background: #1a3a2a; color: var(--accent2); }
+        .token-chip.current {
+            background: var(--accent4);
+            color: #000;
+            animation: pulse 0.6s ease-in-out;
+            font-weight: bold;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Probability bars */
+        .prob-bars { margin-top: 0.5rem; }
+        .prob-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+        .prob-bar-label {
+            width: 60px;
+            text-align: right;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text2);
+        }
+        .prob-bar-track {
+            flex: 1;
+            height: 20px;
+            background: var(--bg);
+            border-radius: 4px;
+            overflow: hidden;
+            max-width: 300px;
+        }
+        .prob-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
+        .prob-bar-value {
+            width: 55px;
+            font-size: 0.8rem;
+            color: var(--text2);
+        }
+        .prob-bar-row.chosen .prob-bar-fill { background: var(--accent2); }
+        .prob-bar-row:not(.chosen) .prob-bar-fill { background: var(--accent); opacity: 0.6; }
+
+        /* Training chart */
+        .chart-canvas { width: 100%; max-height: 350px; }
+
+        /* Tensor visualization */
+        .tensor-grid {
+            display: grid;
+            gap: 2px;
+            width: fit-content;
+            margin: 0.5rem 0;
+        }
+        .tensor-cell {
+            width: 18px;
+            height: 18px;
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+        .tensor-label {
+            font-size: 0.8rem;
+            color: var(--text2);
+            margin-top: 0.3rem;
+        }
+
+        /* Pipeline flow diagram */
+        .pipeline {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 1rem 0;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+        }
+        .pipe-block {
+            min-width: 100px;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.75rem;
+            border: 2px solid transparent;
+            transition: all 0.4s;
+            flex-shrink: 0;
+        }
+        .pipe-block.active {
+            border-color: var(--accent4);
+            box-shadow: 0 0 15px rgba(240,136,62,0.3);
+            transform: scale(1.05);
+        }
+        .pipe-arrow {
+            color: var(--text2);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .pipe-embed { background: #1a2a4a; color: var(--accent); }
+        .pipe-pe { background: #2a1a4a; color: var(--accent3); }
+        .pipe-attn { background: #1a3a2a; color: var(--accent2); }
+        .pipe-ffn { background: #3a2a1a; color: var(--accent4); }
+        .pipe-norm { background: #2a2a2a; color: var(--text); }
+        .pipe-out { background: #3a1a1a; color: var(--red); }
+
+        /* Info boxes */
+        .info-box {
+            background: var(--bg3);
+            border-left: 3px solid var(--accent);
+            padding: 0.8rem 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+            color: var(--text2);
+        }
+        .info-box strong { color: var(--text); }
+        code {
+            background: var(--bg);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent3);
+        }
+
+        /* Model stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        .stat-card {
+            background: var(--bg3);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--grad1), var(--grad2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-label { font-size: 0.8rem; color: var(--text2); margin-top: 0.3rem; }
+
+        /* File loader */
+        .file-loader {
+            text-align: center;
+            padding: 2rem;
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+        .file-loader input[type="file"] { display: none; }
+        .file-loader label {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+        }
+        .file-loader label:hover { opacity: 0.85; }
+        .file-loader p { color: var(--text2); margin-top: 0.5rem; font-size: 0.9rem; }
+        .loaded-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: #1a3a2a;
+            color: var(--accent2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5rem; }
+            .content { padding: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🐉 Mini Transformer — Visualización Interactiva</h1>
+    <p>Explora cada componente de la arquitectura Transformer paso a paso</p>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" data-tab="arch">🏗️ Arquitectura</button>
+    <button class="tab-btn" data-tab="flow">⚡ Flujo de Datos</button>
+    <button class="tab-btn" data-tab="attention">👁️ Attention Weights</button>
+    <button class="tab-btn" data-tab="generation">✨ Generación</button>
+    <button class="tab-btn" data-tab="training">📈 Entrenamiento</button>
+</div>
+
+<div class="content">
+
+    <!-- FILE LOADER -->
+    <div class="file-loader" id="fileLoader">
+        <label for="traceFile">📂 Cargar trace_data.json</label>
+        <input type="file" id="traceFile" accept=".json">
+        <p>Ejecuta <code>python train.py</code> primero para generar los datos, luego carga el archivo aquí.</p>
+        <p>O explora la visualización con datos de demostración integrados. ↓</p>
+        <div id="loadedStatus"></div>
+    </div>
+
+    <!-- TAB 1: ARCHITECTURE -->
+    <div class="tab-content active" id="tab-arch">
+        <div class="card">
+            <h3>🏗️ Arquitectura del Transformer Decoder-Only</h3>
+            <p style="color:var(--text2); margin-bottom:1rem;">
+                Esta es la arquitectura que usa nuestro mini modelo. Es un <strong>decoder-only</strong> Transformer,
+                similar a GPT. Cada bloque procesa la secuencia completa y pasa su resultado al siguiente.
+            </p>
+            <div class="arch-container">
+                <svg id="archSvg" viewBox="0 0 900 680" class="arch-svg" style="width:100%;max-width:900px;display:block;margin:0 auto;">
+                    <!-- Background -->
+                    <defs>
+                        <linearGradient id="gEmbed" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a2a4a"/><stop offset="100%" stop-color="#2a3a5a"/></linearGradient>
+                        <linearGradient id="gPE" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#2a1a4a"/><stop offset="100%" stop-color="#3a2a5a"/></linearGradient>
+                        <linearGradient id="gAttn" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#1a3a2a"/><stop offset="100%" stop-color="#2a4a3a"/></linearGradient>
+                        <linearGradient id="gFFN" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3a2a1a"/><stop offset="100%" stop-color="#4a3a2a"/></linearGradient>
+                        <linearGradient id="gOut" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3a1a1a"/><stop offset="100%" stop-color="#4a2a2a"/></linearGradient>
+                        <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    </defs>
+
+                    <!-- Input -->
+                    <rect x="300" y="10" width="300" height="40" rx="8" fill="url(#gEmbed)" stroke="#58a6ff" stroke-width="1.5"/>
+                    <text x="450" y="35" text-anchor="middle" fill="#58a6ff" font-size="14" font-weight="bold">Tokens de Entrada</text>
+                    <text x="450" y="52" text-anchor="middle" fill="#8b949e" font-size="10">(batch, seq_len)</text>
+
+                    <!-- Arrow -->
+                    <line x1="450" y1="55" x2="450" y2="70" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+                    <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#8b949e"/></marker></defs>
+
+                    <!-- Token Embedding -->
+                    <rect x="300" y="72" width="300" height="40" rx="8" fill="url(#gEmbed)" stroke="#58a6ff" stroke-width="1.5"/>
+                    <text x="450" y="97" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="bold">Token Embedding</text>
+                    <text x="450" y="114" text-anchor="middle" fill="#8b949e" font-size="10">(batch, seq_len, d_model)</text>
+
+                    <!-- Arrow + symbol -->
+                    <line x1="450" y1="117" x2="450" y2="132" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+                    <circle cx="450" cy="142" r="12" fill="var(--bg2)" stroke="#d2a8ff" stroke-width="1.5"/>
+                    <text x="450" y="147" text-anchor="middle" fill="#d2a8ff" font-size="16" font-weight="bold">+</text>
+
+                    <!-- Positional Encoding -->
+                    <rect x="640" y="125" width="200" height="35" rx="8" fill="url(#gPE)" stroke="#d2a8ff" stroke-width="1.5"/>
+                    <text x="740" y="147" text-anchor="middle" fill="#d2a8ff" font-size="12" font-weight="bold">Positional Encoding</text>
+                    <line x1="640" y1="142" x2="462" y2="142" stroke="#d2a8ff" stroke-width="1" stroke-dasharray="4"/>
+
+                    <line x1="450" y1="154" x2="450" y2="175" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                    <!-- Decoder Block (repeated) -->
+                    <rect x="200" y="178" width="500" height="340" rx="12" fill="none" stroke="#30363d" stroke-width="2" stroke-dasharray="6"/>
+                    <text x="210" y="198" fill="#8b949e" font-size="12" font-style="italic">× N capas (num_layers)</text>
+
+                    <!-- LayerNorm 1 -->
+                    <rect x="325" y="210" width="250" height="30" rx="6" fill="#2a2a2a" stroke="#8b949e" stroke-width="1"/>
+                    <text x="450" y="230" text-anchor="middle" fill="#e6edf3" font-size="11">Layer Normalization</text>
+
+                    <line x1="450" y1="240" x2="450" y2="255" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                    <!-- Multi-Head Attention -->
+                    <rect x="275" y="258" width="350" height="70" rx="8" fill="url(#gAttn)" stroke="#3fb950" stroke-width="1.5"/>
+                    <text x="450" y="282" text-anchor="middle" fill="#3fb950" font-size="13" font-weight="bold">Multi-Head Self-Attention</text>
+                    <text x="450" y="300" text-anchor="middle" fill="#8b949e" font-size="10">Q, K, V → Scaled Dot-Product → Concat → Linear</text>
+                    <text x="450" y="316" text-anchor="middle" fill="#8b949e" font-size="10">(batch, heads, seq_len, d_k) → (batch, seq_len, d_model)</text>
+
+                    <!-- Residual connection 1 -->
+                    <line x1="260" y1="195" x2="260" y2="348" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="4"/>
+                    <line x1="260" y1="348" x2="435" y2="348" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrowhead)"/>
+                    <text x="240" y="280" fill="#f0883e" font-size="9" transform="rotate(-90,240,280)">Residual</text>
+
+                    <!-- Add -->
+                    <circle cx="450" cy="348" r="10" fill="var(--bg2)" stroke="#f0883e" stroke-width="1.5"/>
+                    <text x="450" y="352" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">+</text>
+
+                    <line x1="450" y1="358" x2="450" y2="375" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                    <!-- LayerNorm 2 -->
+                    <rect x="325" y="378" width="250" height="30" rx="6" fill="#2a2a2a" stroke="#8b949e" stroke-width="1"/>
+                    <text x="450" y="398" text-anchor="middle" fill="#e6edf3" font-size="11">Layer Normalization</text>
+
+                    <line x1="450" y1="408" x2="450" y2="423" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                    <!-- Feed-Forward -->
+                    <rect x="275" y="426" width="350" height="50" rx="8" fill="url(#gFFN)" stroke="#f0883e" stroke-width="1.5"/>
+                    <text x="450" y="448" text-anchor="middle" fill="#f0883e" font-size="13" font-weight="bold">Feed-Forward Network</text>
+                    <text x="450" y="465" text-anchor="middle" fill="#8b949e" font-size="10">Linear(d_model→d_ff) → GELU → Linear(d_ff→d_model)</text>
+
+                    <!-- Residual connection 2 -->
+                    <line x1="680" y1="365" x2="680" y2="498" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="4"/>
+                    <line x1="680" y1="498" x2="465" y2="498" stroke="#f0883e" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrowhead)"/>
+                    <text x="700" y="440" fill="#f0883e" font-size="9" transform="rotate(90,700,440)">Residual</text>
+
+                    <!-- Add 2 -->
+                    <circle cx="450" cy="498" r="10" fill="var(--bg2)" stroke="#f0883e" stroke-width="1.5"/>
+                    <text x="450" y="502" text-anchor="middle" fill="#f0883e" font-size="14" font-weight="bold">+</text>
+
+                    <line x1="450" y1="520" x2="450" y2="545" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                    <!-- Final LayerNorm -->
+                    <rect x="325" y="548" width="250" height="30" rx="6" fill="#2a2a2a" stroke="#8b949e" stroke-width="1"/>
+                    <text x="450" y="568" text-anchor="middle" fill="#e6edf3" font-size="11">Final Layer Normalization</text>
+
+                    <line x1="450" y1="578" x2="450" y2="598" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                    <!-- Output projection -->
+                    <rect x="300" y="600" width="300" height="40" rx="8" fill="url(#gOut)" stroke="#f85149" stroke-width="1.5"/>
+                    <text x="450" y="620" text-anchor="middle" fill="#f85149" font-size="13" font-weight="bold">Linear → Softmax</text>
+                    <text x="450" y="637" text-anchor="middle" fill="#8b949e" font-size="10">(batch, seq_len, vocab_size) → Probabilidades</text>
+
+                    <line x1="450" y1="642" x2="450" y2="665" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+                    <text x="450" y="678" text-anchor="middle" fill="#e6edf3" font-size="12" font-weight="bold">Siguiente Token Predicho</text>
+
+                    <!-- Causal mask annotation -->
+                    <rect x="50" y="270" width="180" height="50" rx="8" fill="var(--bg3)" stroke="#f85149" stroke-width="1" stroke-dasharray="3"/>
+                    <text x="140" y="290" text-anchor="middle" fill="#f85149" font-size="10" font-weight="bold">🎭 Causal Mask</text>
+                    <text x="140" y="306" text-anchor="middle" fill="#8b949e" font-size="9">No puede ver tokens futuros</text>
+                    <line x1="230" y1="295" x2="275" y2="295" stroke="#f85149" stroke-width="1" stroke-dasharray="3"/>
+                </svg>
+            </div>
+
+            <div class="info-box">
+                <strong>💡 ¿Por qué "Decoder-Only"?</strong> El Transformer original (2017) tenía encoder + decoder.
+                Para generación de texto puro (como GPT), solo necesitamos el decoder con su máscara causal:
+                cada token solo puede "ver" los tokens anteriores, no los futuros. Esto permite generar texto
+                token por token de izquierda a derecha.
+            </div>
+        </div>
+
+        <!-- Model stats -->
+        <div class="card" id="modelStats">
+            <h3>📊 Estadísticas del Modelo</h3>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card"><div class="stat-value" id="statParams">-</div><div class="stat-label">Parámetros</div></div>
+                <div class="stat-card"><div class="stat-value" id="statVocab">-</div><div class="stat-label">Vocab Size</div></div>
+                <div class="stat-card"><div class="stat-value" id="statDModel">-</div><div class="stat-label">d_model</div></div>
+                <div class="stat-card"><div class="stat-value" id="statHeads">-</div><div class="stat-label">Cabezas</div></div>
+                <div class="stat-card"><div class="stat-value" id="statLayers">-</div><div class="stat-label">Capas</div></div>
+                <div class="stat-card"><div class="stat-value" id="statDFF">-</div><div class="stat-label">d_ff</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: DATA FLOW -->
+    <div class="tab-content" id="tab-flow">
+        <div class="card">
+            <h3>⚡ Flujo de Datos Paso a Paso</h3>
+            <p style="color:var(--text2);margin-bottom:1rem;">
+                Observa cómo un token viaja a través de cada componente del Transformer.
+                Haz clic en "Siguiente Paso" para avanzar por la pipeline.
+            </p>
+            <div class="gen-controls" style="margin-bottom:1rem;">
+                <button id="flowPrev" class="secondary">⬅ Anterior</button>
+                <button id="flowNext">Siguiente Paso ➡</button>
+                <button id="flowReset" class="secondary">🔄 Reiniciar</button>
+                <span id="flowStepLabel" style="color:var(--text2);font-size:0.9rem;"></span>
+            </div>
+
+            <!-- Pipeline visualization -->
+            <div class="pipeline" id="pipelineVis">
+                <div class="pipe-block pipe-embed" data-step="0">📥<br><strong>Token IDs</strong><br><span style="font-size:0.65rem">(batch, seq_len)</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-embed" data-step="1">📊<br><strong>Embedding</strong><br><span style="font-size:0.65rem">(batch, seq, d_model)</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-pe" data-step="2">📍<br><strong>+ Pos Enc</strong><br><span style="font-size:0.65rem">(batch, seq, d_model)</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-attn" data-step="3">🔍<br><strong>Q, K, V</strong><br><span style="font-size:0.65rem">(batch, heads, seq, d_k)</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-attn" data-step="4">⚖️<br><strong>Attention</strong><br><span style="font-size:0.65rem">softmax(QK^T/√d_k)</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-ffn" data-step="5">🧠<br><strong>FFN</strong><br><span style="font-size:0.65rem">Linear→GELU→Linear</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-norm" data-step="6">📐<br><strong>LayerNorm</strong><br><span style="font-size:0.65rem">(batch, seq, d_model)</span></div>
+                <div class="pipe-arrow">→</div>
+                <div class="pipe-block pipe-out" data-step="7">🎯<br><strong>Logits</strong><br><span style="font-size:0.65rem">(batch, seq, vocab)</span></div>
+            </div>
+
+            <!-- Explanation area -->
+            <div class="card" id="flowExplanation" style="border-color: var(--accent4);">
+                <h4 id="flowTitle">Haz clic en "Siguiente Paso" para comenzar</h4>
+                <p id="flowDesc" style="color:var(--text2);">
+                    Recorreremos el flujo completo de datos desde los tokens de entrada
+                    hasta la predicción del siguiente token.
+                </p>
+                <div id="flowTensor" style="margin-top:1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: ATTENTION -->
+    <div class="tab-content" id="tab-attention">
+        <div class="card">
+            <h3>👁️ Visualización de Attention Weights</h3>
+            <p style="color:var(--text2);margin-bottom:1rem;">
+                Este mapa de calor muestra cuánta "atención" presta cada token a los demás.
+                Colores más brillantes = mayor atención. La máscara causal (triangular inferior)
+                impide que los tokens vean al futuro.
+            </p>
+            <div class="heatmap-container">
+                <div class="heatmap-controls">
+                    <label>Capa: <select id="layerSelect"></select></label>
+                    <label>Cabeza: <select id="headSelect"></select></label>
+                    <label>Paso: <select id="stepSelect"></select></label>
+                </div>
+                <canvas id="heatmapCanvas" class="heatmap" width="500" height="500"></canvas>
+                <div id="heatmapTokens" style="font-family:monospace;font-size:0.85rem;color:var(--text2);text-align:center;"></div>
+            </div>
+            <div class="info-box">
+                <strong>📖 Cómo leer el mapa:</strong> El eje Y representa el token "que pregunta" (Query)
+                y el eje X el token "al que atiende" (Key). Un color brillante en la posición (i, j) significa
+                que el token i presta mucha atención al token j. La zona negra superior-derecha es la máscara causal.
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: GENERATION -->
+    <div class="tab-content" id="tab-generation">
+        <div class="card">
+            <h3>✨ Generación Token por Token</h3>
+            <p style="color:var(--text2);margin-bottom:1rem;">
+                Observa cómo el modelo genera texto de forma autoregresiva:
+                predice un token, lo añade al contexto, y repite.
+            </p>
+            <div class="gen-area">
+                <div class="gen-controls">
+                    <button id="genPlay">▶ Reproducir</button>
+                    <button id="genStep">⏭ Un paso</button>
+                    <button id="genReset" class="secondary">🔄 Reiniciar</button>
+                    <span style="color:var(--text2);font-size:0.85rem;">Velocidad:</span>
+                    <button id="genSlow" class="secondary">🐢</button>
+                    <button id="genFast" class="secondary">🐇</button>
+                    <span id="genSpeedLabel" style="color:var(--text2);font-size:0.85rem;">1.0s</span>
+                </div>
+
+                <h4>Secuencia generada:</h4>
+                <div class="token-display" id="genTokens"></div>
+
+                <h4>Top predicciones (este paso):</h4>
+                <div class="prob-bars" id="genProbs"></div>
+
+                <div id="genStepInfo" style="color:var(--text2);font-size:0.9rem;margin-top:0.5rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: TRAINING -->
+    <div class="tab-content" id="tab-training">
+        <div class="card">
+            <h3>📈 Historial de Entrenamiento</h3>
+            <p style="color:var(--text2);margin-bottom:1rem;">
+                La curva de pérdida (loss) muestra cómo el modelo mejora con cada época.
+                La perplexidad indica cuán "confundido" está el modelo: un valor más bajo es mejor.
+            </p>
+            <canvas id="lossChart" class="chart-canvas" height="300"></canvas>
+        </div>
+        <div class="card">
+            <h3>📝 Textos Generados</h3>
+            <div id="generatedTexts" style="color:var(--text2);"></div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ==========================================
+// DEMO DATA (used when no trace is loaded)
+// ==========================================
+const DEMO_DATA = generateDemoData();
+
+function generateDemoData() {
+    const tokens = "El dragón leía libros".split('');
+    const vocabChars = [...new Set("El dragón leía libros bajo las estrellas de la noche".split(''))].sort();
+    const tokenToId = {};
+    const idToToken = {};
+    vocabChars.forEach((ch, i) => { tokenToId[ch] = i; idToToken[i] = ch; });
+    const vocabSize = vocabChars.length;
+    const promptStr = "El dragón ";
+    const promptIds = promptStr.split('').map(ch => tokenToId[ch] || 0);
+    const generatedChars = "leía libros bajo".split('');
+
+    const steps = [];
+    let contextIds = [...promptIds];
+    for (let s = 0; s < generatedChars.length; s++) {
+        const ch = generatedChars[s];
+        const chosenId = tokenToId[ch] !== undefined ? tokenToId[ch] : 0;
+        // Fake attention weights: 2 layers, 4 heads
+        const seqLen = contextIds.length;
+        const attns = [];
+        for (let l = 0; l < 2; l++) {
+            const layerAttn = [];
+            for (let h = 0; h < 4; h++) {
+                const matrix = [];
+                for (let i = 0; i < seqLen; i++) {
+                    const row = [];
+                    let sum = 0;
+                    for (let j = 0; j < seqLen; j++) {
+                        const v = j <= i ? Math.random() : 0;
+                        row.push(v);
+                        sum += v;
+                    }
+                    matrix.push(row.map(v => v / (sum || 1)));
+                }
+                layerAttn.push(matrix);
+            }
+            attns.push(layerAttn);
+        }
+        // Top predictions
+        const topPreds = [];
+        let remaining = 1.0;
+        const candidates = vocabChars.slice(0, 5);
+        // Ensure chosen is first
+        if (!candidates.includes(ch)) candidates[0] = ch;
+        for (let t = 0; t < 5; t++) {
+            const p = t === 0 ? 0.3 + Math.random() * 0.3 : Math.random() * remaining * 0.5;
+            remaining -= p;
+            topPreds.push({
+                token_id: tokenToId[candidates[t]] !== undefined ? tokenToId[candidates[t]] : t,
+                probability: Math.max(0.01, p)
+            });
+        }
+        topPreds.sort((a, b) => b.probability - a.probability);
+
+        steps.push({
+            step: s,
+            context_ids: [...contextIds],
+            top_predictions: topPreds,
+            chosen_token_id: chosenId,
+            chosen_probability: topPreds[0].probability,
+            attention_weights: attns,
+        });
+        contextIds.push(chosenId);
+    }
+
+    return {
+        steps,
+        prompt_ids: promptIds,
+        generated_ids: contextIds,
+        tokenizer: { token_to_id: tokenToId, id_to_token: Object.fromEntries(Object.entries(idToToken).map(([k,v])=>[k,v])), vocab_size: vocabSize },
+        training_history: Array.from({length: 30}, (_, i) => ({
+            epoch: i + 1,
+            loss: 3.5 * Math.exp(-0.08 * i) + 0.8 + Math.random() * 0.1,
+            perplexity: Math.exp(3.5 * Math.exp(-0.08 * i) + 0.8),
+            lr: 0.0003 * (1 - i / 60),
+            time: 0.5 + Math.random() * 0.3,
+        })),
+        generated_texts: [
+            { prompt: "El dragón ", generated: "El dragón leía libros bajo las estrellas brillantes de la noche..." },
+            { prompt: "Las estrellas ", generated: "Las estrellas brillaban como diamantes en el cielo oscuro..." },
+        ],
+        model_info: { total_parameters: 523000, vocab_size: vocabChars.length, d_model: 128, num_heads: 4, num_layers: 4, d_ff: 512 },
+    };
+}
+
+// ==========================================
+// STATE
+// ==========================================
+let traceData = DEMO_DATA;
+let currentFlowStep = -1;
+let genCurrentStep = -1;
+let genInterval = null;
+let genSpeed = 1000;
+
+// ==========================================
+// TAB SWITCHING
+// ==========================================
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+});
+
+// ==========================================
+// FILE LOADING
+// ==========================================
+document.getElementById('traceFile').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = evt => {
+        try {
+            traceData = JSON.parse(evt.target.result);
+            document.getElementById('loadedStatus').innerHTML =
+                '<span class="loaded-badge">✅ Datos cargados correctamente</span>';
+            initializeAll();
+        } catch (err) {
+            alert('Error al leer el archivo: ' + err.message);
+        }
+    };
+    reader.readAsText(file);
+});
+
+// ==========================================
+// INITIALIZATION
+// ==========================================
+function initializeAll() {
+    updateStats();
+    initAttention();
+    initGeneration();
+    initTraining();
+    initFlow();
+}
+
+function updateStats() {
+    const info = traceData.model_info || {};
+    document.getElementById('statParams').textContent = info.total_parameters ? info.total_parameters.toLocaleString() : '-';
+    document.getElementById('statVocab').textContent = info.vocab_size || '-';
+    document.getElementById('statDModel').textContent = info.d_model || '-';
+    document.getElementById('statHeads').textContent = info.num_heads || '-';
+    document.getElementById('statLayers').textContent = info.num_layers || '-';
+    document.getElementById('statDFF').textContent = info.d_ff || '-';
+}
+
+// ==========================================
+// FLOW VISUALIZATION
+// ==========================================
+const flowSteps = [
+    { title: "📥 Token IDs", desc: "El texto se convierte en una secuencia de enteros. Cada carácter (o subpalabra) tiene un ID único en el vocabulario. Ejemplo: 'El' → [14, 37].", dims: "(batch_size, seq_len)", color: "#58a6ff" },
+    { title: "📊 Token Embedding", desc: "Cada ID se busca en una tabla de embeddings (nn.Embedding). Esto convierte cada entero en un vector denso de d_model dimensiones que captura el 'significado' del token. Se multiplica por √d_model para balancear con el positional encoding.", dims: "(batch_size, seq_len, d_model)", color: "#58a6ff" },
+    { title: "📍 + Positional Encoding", desc: "Se SUMA un vector de posición a cada embedding. Usa funciones sin/cos de diferentes frecuencias para que cada posición tenga una 'huella digital' única. Sin esto, 'gato come ratón' = 'ratón come gato'.", dims: "(batch_size, seq_len, d_model)", color: "#d2a8ff" },
+    { title: "🔍 Proyección Q, K, V", desc: "Cada token se proyecta en 3 representaciones: Query (lo que busco), Key (mi etiqueta), Value (mi contenido). Cada una se divide en num_heads cabezas para atención multi-perspectiva. Q = xW_q, K = xW_k, V = xW_v.", dims: "(batch, num_heads, seq_len, d_k)  donde d_k = d_model / num_heads", color: "#3fb950" },
+    { title: "⚖️ Scaled Dot-Product Attention", desc: "scores = QK^T / √d_k → softmax → × V. Cada token 'pregunta' (Q) cuánto le interesa cada otro token (K), luego hace un promedio ponderado de los valores (V). La máscara causal impide ver tokens futuros.", dims: "scores: (batch, heads, seq, seq) → output: (batch, heads, seq, d_k)", color: "#3fb950" },
+    { title: "🧠 Feed-Forward Network", desc: "Después de mezclar info entre tokens (atención), cada posición se transforma individualmente: Linear(d_model→4×d_model) → GELU → Linear(4×d_model→d_model). Esto añade la no-linealidad necesaria.", dims: "(batch_size, seq_len, d_model)", color: "#f0883e" },
+    { title: "📐 Layer Norm + Residual", desc: "Cada sub-capa tiene: output = x + SubLayer(LayerNorm(x)). La conexión residual permite al gradiente fluir directamente. LayerNorm estabiliza los valores normalizando a media=0, varianza=1 por cada token.", dims: "(batch_size, seq_len, d_model)", color: "#e6edf3" },
+    { title: "🎯 Logits → Probabilidades", desc: "La capa final proyecta de d_model a vocab_size dimensiones. Cada valor es un 'logit' (puntuación sin normalizar). Aplicamos softmax para obtener probabilidades, y luego sampling (con temperature, top-k, top-p) para elegir el siguiente token.", dims: "(batch_size, seq_len, vocab_size) → token ID", color: "#f85149" },
+];
+
+function initFlow() {
+    currentFlowStep = -1;
+    updateFlowUI();
+}
+
+function updateFlowUI() {
+    const blocks = document.querySelectorAll('.pipe-block');
+    blocks.forEach(b => b.classList.remove('active'));
+
+    if (currentFlowStep >= 0 && currentFlowStep < flowSteps.length) {
+        blocks[currentFlowStep]?.classList.add('active');
+        const step = flowSteps[currentFlowStep];
+        document.getElementById('flowTitle').textContent = step.title;
+        document.getElementById('flowDesc').innerHTML = step.desc;
+        document.getElementById('flowTensor').innerHTML =
+            `<code style="color:${step.color}">Dimensiones: ${step.dims}</code>`;
+        document.getElementById('flowStepLabel').textContent =
+            `Paso ${currentFlowStep + 1} / ${flowSteps.length}`;
+
+        // Scroll pipeline to show active block
+        blocks[currentFlowStep]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    } else {
+        document.getElementById('flowTitle').textContent = 'Haz clic en "Siguiente Paso" para comenzar';
+        document.getElementById('flowDesc').textContent = 'Recorreremos el flujo completo de datos desde los tokens de entrada hasta la predicción del siguiente token.';
+        document.getElementById('flowTensor').innerHTML = '';
+        document.getElementById('flowStepLabel').textContent = '';
+    }
+}
+
+document.getElementById('flowNext').addEventListener('click', () => {
+    if (currentFlowStep < flowSteps.length - 1) { currentFlowStep++; updateFlowUI(); }
+});
+document.getElementById('flowPrev').addEventListener('click', () => {
+    if (currentFlowStep > 0) { currentFlowStep--; updateFlowUI(); }
+});
+document.getElementById('flowReset').addEventListener('click', () => {
+    currentFlowStep = -1; updateFlowUI();
+});
+
+// ==========================================
+// ATTENTION HEATMAP
+// ==========================================
+function initAttention() {
+    const steps = traceData.steps || [];
+    if (steps.length === 0) return;
+
+    const stepSel = document.getElementById('stepSelect');
+    stepSel.innerHTML = steps.map((s, i) => `<option value="${i}">Paso ${i}</option>`).join('');
+
+    const firstStep = steps[0];
+    const numLayers = (firstStep.attention_weights || []).length;
+    const numHeads = numLayers > 0 ? (firstStep.attention_weights[0] || []).length : 0;
+
+    const layerSel = document.getElementById('layerSelect');
+    layerSel.innerHTML = Array.from({length: numLayers}, (_, i) => `<option value="${i}">Capa ${i}</option>`).join('');
+
+    const headSel = document.getElementById('headSelect');
+    headSel.innerHTML = Array.from({length: numHeads}, (_, i) => `<option value="${i}">Cabeza ${i}</option>`).join('');
+
+    const drawHeatmap = () => {
+        const si = parseInt(stepSel.value);
+        const li = parseInt(layerSel.value);
+        const hi = parseInt(headSel.value);
+        const step = steps[si];
+        if (!step || !step.attention_weights || !step.attention_weights[li]) return;
+        const matrix = step.attention_weights[li][hi];
+        if (!matrix) return;
+
+        const canvas = document.getElementById('heatmapCanvas');
+        const ctx = canvas.getContext('2d');
+        const n = matrix.length;
+        const cellSize = Math.min(Math.floor(480 / n), 40);
+        const pad = 50;
+        canvas.width = n * cellSize + pad + 20;
+        canvas.height = n * cellSize + pad + 20;
+
+        ctx.fillStyle = '#0f1117';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const idToToken = traceData.tokenizer?.id_to_token || {};
+        const contextIds = step.context_ids || [];
+
+        // Draw cells
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                const v = matrix[i][j];
+                const intensity = Math.min(255, Math.floor(v * 255 * 2.5));
+                ctx.fillStyle = `rgb(${Math.floor(intensity * 0.34)}, ${Math.floor(intensity * 0.65)}, ${intensity})`;
+                ctx.fillRect(pad + j * cellSize, pad + i * cellSize, cellSize - 1, cellSize - 1);
+                // Show value in cells if big enough
+                if (cellSize >= 25 && v > 0.01) {
+                    ctx.fillStyle = v > 0.3 ? '#fff' : '#8b949e';
+                    ctx.font = `${Math.max(8, cellSize / 3.5)}px monospace`;
+                    ctx.textAlign = 'center';
+                    ctx.fillText(v.toFixed(2), pad + j * cellSize + cellSize / 2, pad + i * cellSize + cellSize / 2 + 3);
+                }
+            }
+        }
+
+        // Labels
+        ctx.fillStyle = '#e6edf3';
+        ctx.font = `${Math.min(11, cellSize * 0.6)}px monospace`;
+        ctx.textAlign = 'center';
+        for (let i = 0; i < n; i++) {
+            const tok = idToToken[contextIds[i]] || '?';
+            const display = tok === ' ' ? '␣' : tok === '\n' ? '↵' : tok;
+            // Top labels (Keys)
+            ctx.save();
+            ctx.translate(pad + i * cellSize + cellSize / 2, pad - 5);
+            ctx.rotate(-Math.PI / 4);
+            ctx.fillText(display, 0, 0);
+            ctx.restore();
+            // Left labels (Queries)
+            ctx.textAlign = 'right';
+            ctx.fillText(display, pad - 5, pad + i * cellSize + cellSize / 2 + 4);
+            ctx.textAlign = 'center';
+        }
+
+        // Axis labels
+        ctx.fillStyle = '#8b949e';
+        ctx.font = '11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Key (al que atiende) →', pad + n * cellSize / 2, pad - 30);
+        ctx.save();
+        ctx.translate(12, pad + n * cellSize / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText('Query (el que pregunta) →', 0, 0);
+        ctx.restore();
+    };
+
+    stepSel.addEventListener('change', drawHeatmap);
+    layerSel.addEventListener('change', drawHeatmap);
+    headSel.addEventListener('change', drawHeatmap);
+    drawHeatmap();
+}
+
+// ==========================================
+// GENERATION ANIMATION
+// ==========================================
+function initGeneration() {
+    genCurrentStep = -1;
+    if (genInterval) { clearInterval(genInterval); genInterval = null; }
+    renderGenStep();
+}
+
+function renderGenStep() {
+    const steps = traceData.steps || [];
+    const idToToken = traceData.tokenizer?.id_to_token || {};
+    const promptIds = traceData.prompt_ids || [];
+
+    const tokensDiv = document.getElementById('genTokens');
+    const probsDiv = document.getElementById('genProbs');
+    const infoDiv = document.getElementById('genStepInfo');
+
+    // Build token sequence
+    let html = '';
+    // Prompt tokens
+    promptIds.forEach((id, i) => {
+        const ch = idToToken[id] || '?';
+        const display = ch === ' ' ? '␣' : ch === '\n' ? '↵' : ch;
+        html += `<span class="token-chip prompt" title="Prompt token ${i}: '${ch}' (ID: ${id})">${display}</span>`;
+    });
+
+    // Generated tokens up to current step
+    for (let s = 0; s <= genCurrentStep && s < steps.length; s++) {
+        const step = steps[s];
+        const ch = idToToken[step.chosen_token_id] || '?';
+        const display = ch === ' ' ? '␣' : ch === '\n' ? '↵' : ch;
+        const cls = s === genCurrentStep ? 'current' : 'generated';
+        html += `<span class="token-chip ${cls}" title="Paso ${s}: '${ch}' (ID: ${step.chosen_token_id}, p=${step.chosen_probability.toFixed(3)})">${display}</span>`;
+    }
+    tokensDiv.innerHTML = html;
+
+    // Probability bars
+    if (genCurrentStep >= 0 && genCurrentStep < steps.length) {
+        const step = steps[genCurrentStep];
+        let barsHtml = '';
+        (step.top_predictions || []).forEach(pred => {
+            const ch = idToToken[pred.token_id] || '?';
+            const display = ch === ' ' ? '␣' : ch === '\n' ? '↵' : ch;
+            const pct = (pred.probability * 100).toFixed(1);
+            const isChosen = pred.token_id === step.chosen_token_id;
+            barsHtml += `
+                <div class="prob-bar-row ${isChosen ? 'chosen' : ''}">
+                    <span class="prob-bar-label">'${display}'</span>
+                    <div class="prob-bar-track"><div class="prob-bar-fill" style="width:${Math.min(100, pred.probability * 200)}%"></div></div>
+                    <span class="prob-bar-value">${pct}% ${isChosen ? '✓' : ''}</span>
+                </div>`;
+        });
+        probsDiv.innerHTML = barsHtml;
+        infoDiv.textContent = `Paso ${genCurrentStep + 1} de ${steps.length} — Token elegido: '${idToToken[step.chosen_token_id] || '?'}' (probabilidad: ${(step.chosen_probability * 100).toFixed(1)}%)`;
+    } else {
+        probsDiv.innerHTML = '<span style="color:var(--text2)">Presiona ▶ para iniciar la generación</span>';
+        infoDiv.textContent = '';
+    }
+}
+
+document.getElementById('genPlay').addEventListener('click', () => {
+    if (genInterval) { clearInterval(genInterval); genInterval = null; document.getElementById('genPlay').textContent = '▶ Reproducir'; return; }
+    document.getElementById('genPlay').textContent = '⏸ Pausar';
+    genInterval = setInterval(() => {
+        const steps = traceData.steps || [];
+        if (genCurrentStep < steps.length - 1) {
+            genCurrentStep++;
+            renderGenStep();
+        } else {
+            clearInterval(genInterval);
+            genInterval = null;
+            document.getElementById('genPlay').textContent = '▶ Reproducir';
+        }
+    }, genSpeed);
+});
+
+document.getElementById('genStep').addEventListener('click', () => {
+    const steps = traceData.steps || [];
+    if (genCurrentStep < steps.length - 1) { genCurrentStep++; renderGenStep(); }
+});
+
+document.getElementById('genReset').addEventListener('click', () => {
+    if (genInterval) { clearInterval(genInterval); genInterval = null; document.getElementById('genPlay').textContent = '▶ Reproducir'; }
+    genCurrentStep = -1;
+    renderGenStep();
+});
+
+document.getElementById('genSlow').addEventListener('click', () => {
+    genSpeed = Math.min(3000, genSpeed + 200);
+    document.getElementById('genSpeedLabel').textContent = (genSpeed / 1000).toFixed(1) + 's';
+});
+document.getElementById('genFast').addEventListener('click', () => {
+    genSpeed = Math.max(200, genSpeed - 200);
+    document.getElementById('genSpeedLabel').textContent = (genSpeed / 1000).toFixed(1) + 's';
+});
+
+// ==========================================
+// TRAINING CHART
+// ==========================================
+function initTraining() {
+    const history = traceData.training_history || [];
+    const canvas = document.getElementById('lossChart');
+    if (!canvas || history.length === 0) return;
+
+    const ctx = canvas.getContext('2d');
+    const W = canvas.parentElement.clientWidth - 40;
+    canvas.width = Math.max(400, W);
+    canvas.height = 300;
+    const w = canvas.width, h = canvas.height;
+    const pad = { top: 30, right: 80, bottom: 40, left: 60 };
+
+    ctx.fillStyle = '#0f1117';
+    ctx.fillRect(0, 0, w, h);
+
+    const losses = history.map(e => e.loss);
+    const ppls = history.map(e => e.perplexity);
+    const minL = Math.min(...losses) * 0.9, maxL = Math.max(...losses) * 1.1;
+    const minP = Math.min(...ppls) * 0.9, maxP = Math.max(...ppls) * 1.1;
+    const plotW = w - pad.left - pad.right;
+    const plotH = h - pad.top - pad.bottom;
+
+    // Grid
+    ctx.strokeStyle = '#21262d';
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i <= 5; i++) {
+        const y = pad.top + plotH * i / 5;
+        ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(w - pad.right, y); ctx.stroke();
+        ctx.fillStyle = '#8b949e'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right';
+        ctx.fillText((maxL - (maxL - minL) * i / 5).toFixed(2), pad.left - 5, y + 3);
+    }
+
+    // Loss line
+    ctx.strokeStyle = '#58a6ff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    history.forEach((e, i) => {
+        const x = pad.left + (i / (history.length - 1 || 1)) * plotW;
+        const y = pad.top + plotH * (1 - (e.loss - minL) / (maxL - minL || 1));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Perplexity line (right axis)
+    ctx.strokeStyle = '#d2a8ff';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 3]);
+    ctx.beginPath();
+    history.forEach((e, i) => {
+        const x = pad.left + (i / (history.length - 1 || 1)) * plotW;
+        const y = pad.top + plotH * (1 - (e.perplexity - minP) / (maxP - minP || 1));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Right axis labels
+    for (let i = 0; i <= 5; i++) {
+        const y = pad.top + plotH * i / 5;
+        ctx.fillStyle = '#d2a8ff'; ctx.font = '10px sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText((maxP - (maxP - minP) * i / 5).toFixed(1), w - pad.right + 5, y + 3);
+    }
+
+    // X axis
+    ctx.fillStyle = '#8b949e'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center';
+    const step = Math.max(1, Math.floor(history.length / 8));
+    for (let i = 0; i < history.length; i += step) {
+        const x = pad.left + (i / (history.length - 1 || 1)) * plotW;
+        ctx.fillText(history[i].epoch, x, h - pad.bottom + 18);
+    }
+    ctx.fillText('Época', pad.left + plotW / 2, h - 5);
+
+    // Legend
+    ctx.fillStyle = '#58a6ff'; ctx.fillRect(w - pad.right + 10, pad.top, 12, 3);
+    ctx.fillStyle = '#8b949e'; ctx.font = '10px sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText('Loss', w - pad.right + 26, pad.top + 4);
+    ctx.fillStyle = '#d2a8ff'; ctx.setLineDash([3,2]);
+    ctx.beginPath(); ctx.moveTo(w - pad.right + 10, pad.top + 18); ctx.lineTo(w - pad.right + 22, pad.top + 18); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillText('PPL', w - pad.right + 26, pad.top + 22);
+
+    // Generated texts
+    const textsDiv = document.getElementById('generatedTexts');
+    if (traceData.generated_texts && traceData.generated_texts.length > 0) {
+        textsDiv.innerHTML = traceData.generated_texts.map(t =>
+            `<div class="card" style="border-color:#1a3a2a;">
+                <strong style="color:var(--accent);">Prompt: "${t.prompt}"</strong>
+                <p style="margin-top:0.5rem;font-family:monospace;color:var(--text);line-height:1.8;">${t.generated}</p>
+            </div>`
+        ).join('');
+    }
+}
+
+// ==========================================
+// INIT
+// ==========================================
+initializeAll();
+</script>
+</body>
+</html>
