@@ -14,3 +14,6 @@ trace_data.json
 
 # Abacus.ai internal marker
 .abacus.donotdelete
+
+# Re-include CLAUDE.md (overrides the user's global ignore for this repo only)
+!CLAUDE.md
